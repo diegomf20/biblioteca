@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\model\libro;
+use App\model\categoria;
+use App\Logica\Mensaje;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LibroController extends Controller
 {
@@ -14,7 +17,9 @@ class LibroController extends Controller
      */
     public function index()
     {
-        //
+        $categorias=categoria::all();
+        $libros=libro::paginate(2);
+        return view('libro.index',compact('libros','categorias'));
     }
 
     /**
@@ -24,7 +29,8 @@ class LibroController extends Controller
      */
     public function create()
     {
-        //
+        $categorias=categoria::all();
+        return view('libro.new',compact('categorias'));
     }
 
     /**
@@ -43,9 +49,9 @@ class LibroController extends Controller
             $libro->fila=$request->get('fila');
             $libro->codigo=$request->get('codigo');
             $libro->descripcion=$request->get('descripcion');
-            $libro->fechaP=$request->get('fecha_publicacion');
-            $libro->autor=$request->get('bloque');
-            $libro->categoria=$request->get('categoria_id');
+            $libro->fecha_publicacion=$request->get('fecha_publicacion');
+            $libro->bloque_id=$request->get('bloque');
+            $libro->categoria_id=$request->get('categoria_id');
             $libro->save();
             DB::commit();
             return redirect()->route('libro.index')
@@ -53,6 +59,7 @@ class LibroController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             $error = $e->getMessage();
+            dd('El libro '.$libro->titulo.' no se ha podido registrar.'.'<br>'.$error);
             return redirect()->back()->with('mensaje', Mensaje::danger ('El libro '.$libro->titulo.' no se ha podido registrar.'.'<br>'.$error));
         }
     }
