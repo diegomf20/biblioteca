@@ -16,8 +16,8 @@ class EstudianteController extends Controller
      */
     public function index()
     {
-        $estudiante= estudiante::all();
-        return view('estudiante.index');
+        $estudiantes= estudiante::all();
+        return view('estudiante.index', compact('estudiante'));
     }
 
     /**
@@ -27,7 +27,7 @@ class EstudianteController extends Controller
      */
     public function create()
     {
-        //
+        return view('estudiante.new');
     }
 
     /**
@@ -68,7 +68,15 @@ class EstudianteController extends Controller
      */
     public function show($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $estudiante=estudiante::where('id',$id)->first();
+            DB::commit();
+            return view('estudiante.show',compact('estudiante'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('estudiante.index');
+        }
     }
 
     /**
@@ -79,7 +87,15 @@ class EstudianteController extends Controller
      */
     public function edit($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $estudiante=estudiante::where('id',$id)->first();
+            DB::commit();
+            return view('estudiante.edit',compact('estudiante'));
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->route('estudiante.index');
+        }
     }
 
     /**
@@ -99,7 +115,7 @@ class EstudianteController extends Controller
             $estudiante->nombre=$request->get('nombre');
             $estudiante->apellido=$request->get('apellido');
             $estudiante->fecha_vence=$request->get('fecha_vence');
-            $estudiante->telefono=$request->get('telefoono');
+            $estudiante->telefono=$request->get('telefono');
             $estudiante->save();
             DB::commit();
             return redirect()->route('estudiante.index')

@@ -15,7 +15,15 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        DB::beginTransaction();
+        try {
+            $usuarios=usuario::all();
+            DB::commit();
+            return view('usuario.index', compact('usuarios'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('usuario.index');
+        }   
     }
 
     /**
@@ -25,7 +33,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('usuario.new');
     }
 
     /**
@@ -64,7 +72,15 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $usuario=usuario::where('id',$id);
+            DB::commit();
+            return view('usuario.show', compact('usuario'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('usuario.index');
+        }   
     }
 
     /**
@@ -75,7 +91,16 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $usuario=usuario::where('id',$id);
+            DB::commit();
+            return view('usuario.edit', compact('usuario'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('usuario.index');
+        }   
+        
     }
 
     /**
