@@ -44,7 +44,7 @@ class LibroController extends Controller
      * @param  \App\model\libro  $libro
      * @return \Illuminate\Http\Response
      */
-    public function show(libro $libro)
+    public function show($id)
     {
         //
     }
@@ -55,7 +55,7 @@ class LibroController extends Controller
      * @param  \App\model\libro  $libro
      * @return \Illuminate\Http\Response
      */
-    public function edit(libro $libro)
+    public function edit($id)
     {
         //
     }
@@ -67,7 +67,7 @@ class LibroController extends Controller
      * @param  \App\model\libro  $libro
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, libro $libro)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,7 +78,7 @@ class LibroController extends Controller
      * @param  \App\model\libro  $libro
      * @return \Illuminate\Http\Response
      */
-    public function destroy(libro $libro)
+    public function destroy($id)
     {
         //
     }

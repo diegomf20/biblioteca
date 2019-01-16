@@ -44,7 +44,7 @@ class UsuarioController extends Controller
      * @param  \App\model\usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function show(usuario $usuario)
+    public function show($id)
     {
         //
     }
@@ -55,7 +55,7 @@ class UsuarioController extends Controller
      * @param  \App\model\usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function edit(usuario $usuario)
+    public function edit($id)
     {
         //
     }
@@ -67,7 +67,7 @@ class UsuarioController extends Controller
      * @param  \App\model\usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, usuario $usuario)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,7 +78,7 @@ class UsuarioController extends Controller
      * @param  \App\model\usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(usuario $usuario)
+    public function destroy($id)
     {
         //
     }
