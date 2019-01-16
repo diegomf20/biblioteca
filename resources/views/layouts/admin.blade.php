@@ -39,141 +39,39 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg fixed-top" id="mainNav">
     <a class="navbar-brand" href="{{route('home')}}">
         <img src="{{asset('logo.png')}}"  class=" nav-logo d-inline-block align-top" alt="">
-        {{ Auth::user()->empresa->nombre}}
+        BIBLIOTECA
     </a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Caja">
-            <a class="nav-link" href="{{route('operaciones.cajahoy')}}">
-              <i class="fas fa-home"></i> <span class="nav-link-text"> Caja</span>
+          <li class="nav-item" data-toggle="tooltip" data-placement="right">
+            <a class="nav-link" href="{{route('bloque.index')}}">
+                <span class="nav-link-text"><i class="fas fa-boxes"></i>  Bloque</span>
             </a>
           </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Operaciones">
-            <a class="nav-link" href="{{route('ingreso.create')}}">
-              <i class="fas fa-folder-minus"></i> <span class="nav-link-text"> Operaciones</span>
+          <li class="nav-item" data-toggle="tooltip" data-placement="right">
+            <a class="nav-link" href="{{route('libro.index')}}">
+                <span class="nav-link-text"><i class="fas fa-book"></i> Libro</span>
             </a>
           </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Operaciones">
-            <a class="nav-link" href="{{route('transferencia.index')}}">
-              <i class="fas fa-folder-minus"></i> <span class="nav-link-text">Transferencia Caja/Banco</span>
-            </a>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="informes">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
-              <i class="fas fa-search"></i> <span class="nav-link-text">Informes</span>
-              <i class="fas fa-angle-double-down fa-rigth"></i>
-            </a>
-            <ul class="sidenav-second-level collapse" id="collapseComponents">
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Operaciones hoy ">
-                <a class="nav-link" href="{{route('operaciones.hoy')}}">
-                  <i class="far fa-file-alt"></i> <span class="nav-link-text">Operaciones hoy</span>
-                </a>
-              </li>
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ingresos">
-              <a class="nav-link" href="{{route('operaciones.ingresos')}}">
-                  <i class="far fa-arrow-alt-circle-right"></i>
-                  <span class="nav-link-text">Ingresos</span>
-                </a>
-              </li>
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="egresos">
-                <a class="nav-link" href="{{route('operaciones.egresos')}}">
-                  <i class="far fa-arrow-alt-circle-left"></i>
-                  <span class="nav-link-text">Egresos</span>
-                </a>
-              </li>
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Depositos">
-                <a class="nav-link" href="{{route('operaciones.depositos')}}">
-                  <i class="fas fa-arrow-alt-circle-right"></i>
-                  <span class="nav-link-text">Depositos</span>
-                </a>
-              </li>
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Transferencias">
-                <a class="nav-link" href="{{route('operaciones.transferencias')}}">
-                  <i class="fas fa-arrow-alt-circle-left"></i>
-                  <span class="nav-link-text">Transferencias</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Afiliados">
-            <a class="nav-link" href="{{route('afiliado.index')}}">
-              <i class="fa fa-fw fa-users"></i>
-              <span class="nav-link-text">Afiliados</span>
-            </a>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Proveedores">
-            <a class="nav-link" href="{{route('proveedor.index')}}">
-              <i class="fa fa-fw fa-user-tag"></i>
-              <span class="nav-link-text">Proveedores</span>
-            </a>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Usuarios">
-            <a class="nav-link" href="{{route('user.index')}}">
-              <i class="fa fa-fw fa-users-cog"></i>
-              <span class="nav-link-text">Usuarios</span>
-            </a>
-          </li>
-  
-  
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Conceptos">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#concepto" data-parent="#exampleAccordion">
-              <i class="fa fa-fw fa-wrench"></i>
-              <span class="nav-link-text">Conceptos</span>
-              <i class="fas fa-angle-double-down fa-rigth"></i>
-            </a>
-            <ul class="sidenav-second-level collapse" id="concepto">
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Concepto Ingresos ">
-                <a class="nav-link" href="{{route('concepto.index')}}">
-                  <i class="fas fa-location-arrow"></i>
-                  <span class="nav-link-text">Concepto Ingresos</span>
-                </a>
-              </li>
-              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Conceptos Egresos">
-                <a class="nav-link" href="{{route('concepto_egreso.index')}}">
-                  <i class="far fa-arrow-alt-circle-right"></i>
-                  <span class="nav-link-text">Concepto Egreso</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Usuarios">
-            <a class="nav-link" href="{{route('empresa.admin', Auth::user()->empresa_id)}}">
-              <i class="fa fa-fw fa-users-cog"></i>
-              <span class="nav-link-text">Configuraciones</span>
-            </a>
-          </li>
-          @if (Auth::user()->rol_id==4 )
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Usuarios">
-              <a class="nav-link" href="{{route('empresa.index')}}">
-                <i class="fa fa-fw fa-users-cog"></i>
-                <span class="nav-link-text">Empresa</span>
-              </a>
-            </li>
-          @endif
-          
         </ul>
       {{-- parte superior --}}
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user fa-fw"></i>
-            {{ Auth::user()->name  }} {{--{{ Auth::user()->apellido  }}
-            {{-- {{ Auth::user()->rol->nombre }} --}}
-            {{-- {{ Auth::user()->hasRol('Gerente') }} --}}
-
-          </a>
+            <a class="nav-link mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user fa-fw"></i>
+                {{ "Diego Mendoza"}} 
+            </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('cerrar') }}"
+          <a class="nav-link" href=""
                 onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i> Salir
             </a>
-            <form id="logout-form" action="{{ route('cerrar') }}" method="POST" style="display: none;">
-                {{-- <input type="text" name="ruta" id="ruta" value="pinos"> --}}
+            <form id="logout-form" action="" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
         </li>

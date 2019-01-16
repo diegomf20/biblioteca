@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\model\bloque;
 use Illuminate\Http\Request;
+use App\Http\Requests\BloqueValidation;
+use Illuminate\Support\Facades\DB;
 
 class BloqueController extends Controller
 {
@@ -14,7 +16,8 @@ class BloqueController extends Controller
      */
     public function index()
     {
-        //
+        $bloques=bloque::all();
+        return view('bloque.index',compact('bloques'));
     }
 
     /**
@@ -24,7 +27,7 @@ class BloqueController extends Controller
      */
     public function create()
     {
-        //
+        return view('bloque.new');
     }
 
     /**
@@ -33,9 +36,21 @@ class BloqueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BloqueValidation $request)
     {
-        //
+        DB::beginTransaction();
+        try{
+            $bloque=new bloque();
+            $bloque->nombre_bloque=$request->get('nombre');
+            $bloque->filas=$request->get('filas');
+            $bloque->save();
+            DB::commit();
+            return redirect()->route('bloque.index');
+        }catch(\Exception $e){
+            DB::rolback();
+            return redirect()->route('bloque.index');
+        }
+        
     }
 
     /**
@@ -44,7 +59,7 @@ class BloqueController extends Controller
      * @param  \App\model\bloque  $bloque
      * @return \Illuminate\Http\Response
      */
-    public function show(bloque $bloque)
+    public function show($bloque)
     {
         //
     }
@@ -52,33 +67,52 @@ class BloqueController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\model\bloque  $bloque
+     * @param  \App\model\ $bloque
      * @return \Illuminate\Http\Response
      */
-    public function edit(bloque $bloque)
+    public function edit($bloque)
     {
-        //
+        DB::beginTransaction();
+        try{
+            $bloque=bloque::where('id',$bloque)->first();
+            DB::commit();
+            return view('bloque.edit',compact('bloque'));
+        }catch(\Exception $e){
+            DB::rolback();
+            return redirect()->route('bloque.index');
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\model\bloque  $bloque
+     * @param  \App\model\ $bloque
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, bloque $bloque)
+    public function update(BloqueValidation $request, $bloque)
     {
-        //
+        DB::beginTransaction();
+        try{
+            $bloque=bloque::where('id',$bloque)->first();
+            $bloque->nombre_bloque=$request->get('nombre');
+            $bloque->filas=$request->get('filas');
+            $bloque->save();
+            DB::commit();
+            return redirect()->route('bloque.index');
+        }catch(\Exception $e){
+            DB::rolback();
+            return redirect()->route('bloque.index');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\model\bloque  $bloque
+     * @param  \App\model\ $bloque
      * @return \Illuminate\Http\Response
      */
-    public function destroy(bloque $bloque)
+    public function destroy($bloque)
     {
         //
     }

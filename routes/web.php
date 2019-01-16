@@ -14,14 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/bloque',function(){
-    return view('bloque.index');
-})->name('bloque.index');
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
 
-Route::get('/bloque/new',function(){
-    return "hola";
-})->name('bloque.new');
-
-Route::get('/bloque/edit',function(){
-    return "hola";
-})->name('bloque.edit');
+Route::resource('bloque','BloqueController');
+Route::resource('estudiante','EstudianteController');
+Route::resource('libro','LibroController');
+Route::resource('prestamo','PrestamoController');
+Route::resource('usuario','UsuarioController');
+Route::resource('bloque','BloqueController');
