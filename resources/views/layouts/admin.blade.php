@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Flujo de caja - {{ Auth::user()->empresa->nombre}} </title>
+  <title>Biblioteca</title>
   {{-- autocomplete --}}
   <link href="{{asset('js/jquery-ui-1.12.1/jquery-ui.min.css')}}" rel="stylesheet">
   {{-- icon fontawesome--}}
@@ -38,7 +38,7 @@
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg fixed-top" id="mainNav">
     <a class="navbar-brand" href="{{route('home')}}">
-        <img src="{{asset('/storage/'.Auth::user()->empresa->logo)}}"  class=" nav-logo d-inline-block align-top" alt="">
+        <img src="{{asset('logo.png')}}"  class=" nav-logo d-inline-block align-top" alt="">
         {{ Auth::user()->empresa->nombre}}
     </a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
