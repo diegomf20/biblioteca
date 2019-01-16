@@ -44,7 +44,7 @@ class PrestamoController extends Controller
      * @param  \App\model\prestamo  $prestamo
      * @return \Illuminate\Http\Response
      */
-    public function show(prestamo $prestamo)
+    public function show($id)
     {
         //
     }
@@ -55,7 +55,7 @@ class PrestamoController extends Controller
      * @param  \App\model\prestamo  $prestamo
      * @return \Illuminate\Http\Response
      */
-    public function edit(prestamo $prestamo)
+    public function edit($id)
     {
         //
     }
@@ -67,7 +67,7 @@ class PrestamoController extends Controller
      * @param  \App\model\prestamo  $prestamo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, prestamo $prestamo)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,7 +78,7 @@ class PrestamoController extends Controller
      * @param  \App\model\prestamo  $prestamo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(prestamo $prestamo)
+    public function destroy($id)
     {
         //
     }

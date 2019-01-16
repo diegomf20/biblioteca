@@ -44,7 +44,7 @@ class CategoriaController extends Controller
      * @param  \App\model\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show(categoria $categoria)
+    public function show($id)
     {
         //
     }
@@ -55,7 +55,7 @@ class CategoriaController extends Controller
      * @param  \App\model\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(categoria $categoria)
+    public function edit($id)
     {
         //
     }
@@ -67,7 +67,7 @@ class CategoriaController extends Controller
      * @param  \App\model\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, categoria $categoria)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,7 +78,7 @@ class CategoriaController extends Controller
      * @param  \App\model\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(categoria $categoria)
+    public function destroy($id)
     {
         //
     }
