@@ -19,6 +19,16 @@ class CreateCategoriasTable extends Migration
             $table->string('nombre_bloque','50');
             $table->integer('fila');
         });
+
+        DB::table('categoria')->insert([
+            'nombre_bloque'=>'Libro',
+        ]);
+        DB::table('categoria')->insert([
+            'nombre_bloque'=>'Revista',
+        ]);
+        DB::table('categoria')->insert([
+            'nombre_bloque'=>'Catálogo',
+        ]);
     }
 
     /**
