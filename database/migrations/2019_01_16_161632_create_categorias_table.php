@@ -13,9 +13,11 @@ class CreateCategoriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorias', function (Blueprint $table) {
+        Schema::create('categoria', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('nombre_bloque','50');
+            $table->integer('fila');
         });
     }
 
@@ -26,6 +28,6 @@ class CreateCategoriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorias');
+        Schema::dropIfExists('categoria');
     }
 }

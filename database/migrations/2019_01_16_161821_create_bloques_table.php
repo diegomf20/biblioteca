@@ -13,9 +13,11 @@ class CreateBloquesTable extends Migration
      */
     public function up()
     {
-        Schema::create('bloques', function (Blueprint $table) {
+        Schema::create('bloque', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('nombre_bloque','4');
+            $table->integer('filas');
         });
     }
 
@@ -26,6 +28,6 @@ class CreateBloquesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bloques');
+        Schema::dropIfExists('bloque');
     }
 }

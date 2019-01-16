@@ -1,0 +1,4 @@
+para la base de datos:
+    cambiar en AppServiceProvider.php en la function boot:
+          Schema::defaultStringLength(191);
+

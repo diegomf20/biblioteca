@@ -13,10 +13,15 @@ class CreateEstudiantesTable extends Migration
      */
     public function up()
     {
-        Schema::create('estudiantes', function (Blueprint $table) {
+        Schema::create('estudiante', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('nombre','150');
+            $table->string('apellido','150');
+            $table->string('telefono','9');
+            $table->date('fecha_vence');
         });
+
     }
 
     /**
@@ -26,6 +31,6 @@ class CreateEstudiantesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estudiantes');
+        Schema::dropIfExists('estudiante');
     }
 }

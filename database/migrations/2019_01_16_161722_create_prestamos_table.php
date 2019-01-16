@@ -13,9 +13,15 @@ class CreatePrestamosTable extends Migration
      */
     public function up()
     {
-        Schema::create('prestamos', function (Blueprint $table) {
+        Schema::create('prestamo', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->date('fecha_prestamo');
+            $table->date('fecha_entrega');
+            $table->enum('estado',['P','E']);
+            $table->unsignedInteger('estudiante_id');
+            $table->unsignedInteger('usuario_id');
+            $table->unsignedInteger('libro_id');
         });
     }
 
@@ -26,6 +32,6 @@ class CreatePrestamosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prestamos');
+        Schema::dropIfExists('prestamo');
     }
 }
