@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\model\usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller
 {
@@ -35,7 +36,24 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $usuario=new usuario();
+            $usuario->nombre=$request->get('nombre');
+            $usuario->apellido=$request->get('apellido');
+            $usuario->usuario=$request->get('usuario');
+            $usuario->conytrasenia=$request->get('contrasenia');
+            $usuario->email=$request->get('email');
+            $usuario->save();
+            DB::commit();
+
+            return redirect()->route('usuario.index')
+            ->with('mensaje', Mensaje::success('Se registró correctamente el usuario '.$usuario->nombre.' '.$usuario->apellido));
+        } catch (\Exception $e) {
+            DB::rollback();
+            $error = $e->getMessage();
+            return redirect()->back()->with('mensaje', Mensaje::danger ('El usuario '.$usuario->nombre.' '.$usuario->apellido.' no se ha podido registrar.'.'<br>'.$error));
+        }
     }
 
     /**
@@ -69,7 +87,23 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $usuario=usuario::where('id',$id)->first();
+            $usuario->nombre=$request->get('nombre');
+            $usuario->apellido=$request->get('apellido');
+            $usuario->usuario=$request->get('usuario');
+            $usuario->email=$request->get('email');
+            $usuario->save();
+            DB::commit();
+
+            return redirect()->route('usuario.index')
+            ->with('mensaje', Mensaje::success('Se actualizo correctamente el usuario '.$usuario->nombre.' '.$usuario->apellido));
+        } catch (\Exception $e) {
+            DB::rollback();
+            $error = $e->getMessage();
+            return redirect()->back()->with('mensaje', Mensaje::danger ('El usuario '.$usuario->nombre.' '.$usuario->apellido.' no se ha podido actualizar.'.'<br>'.$error));
+        }
     }
 
     /**

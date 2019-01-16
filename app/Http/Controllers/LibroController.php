@@ -35,7 +35,26 @@ class LibroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $libro = new libro();
+            $libro->titulo=$request->get('titulo');
+            $libro->autor=$request->get('autor');
+            $libro->fila=$request->get('fila');
+            $libro->codigo=$request->get('codigo');
+            $libro->descripcion=$request->get('descripcion');
+            $libro->fechaP=$request->get('fecha_publicacion');
+            $libro->autor=$request->get('bloque');
+            $libro->categoria=$request->get('categoria_id');
+            $libro->save();
+            DB::commit();
+            return redirect()->route('libro.index')
+            ->with('mensaje', Mensaje::success('Se registró correctamente el libro '.$libro->titulo));    
+        } catch (\Exception $e) {
+            DB::rollback();
+            $error = $e->getMessage();
+            return redirect()->back()->with('mensaje', Mensaje::danger ('El libro '.$libro->titulo.' no se ha podido registrar.'.'<br>'.$error));
+        }
     }
 
     /**
@@ -69,7 +88,25 @@ class LibroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $libro = libro::where('id',$id)->first();
+            $libro->titulo=$request->get('titulo');
+            $libro->autor=$request->get('autor');
+            $libro->fila=$request->get('fila');
+            $libro->codigo=$request->get('codigo');
+            $libro->descripcion=$request->get('descripcion');
+            $libro->fechaP=$request->get('fecha_publicacion');
+            $libro->autor=$request->get('bloque');
+            $libro->save();
+            DB::commit();
+            return redirect()->route('libro.index')
+            ->with('mensaje', Mensaje::success('Se actualizo correctamente el libro '.$libro->titulo));    
+        } catch (\Exception $e) {
+            DB::rollback();
+            $error = $e->getMessage();
+            return redirect()->back()->with('mensaje', Mensaje::danger ('El libro '.$libro->titulo.' no se ha podido actualizar.'.'<br>'.$error));
+        }
     }
 
     /**

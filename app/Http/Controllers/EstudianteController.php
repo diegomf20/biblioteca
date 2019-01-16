@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\model\estudiante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Logica\Mensaje;
 
 class EstudianteController extends Controller
 {
@@ -14,7 +16,8 @@ class EstudianteController extends Controller
      */
     public function index()
     {
-        //
+        $estudiante= estudiante::all();
+        return view('estudiante.index');
     }
 
     /**

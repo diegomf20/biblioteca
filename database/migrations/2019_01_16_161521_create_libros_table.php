@@ -21,8 +21,9 @@ class CreateLibrosTable extends Migration
             $table->integer('fila');
             $table->string('codigo','15');
             $table->string('descripcion');
-            $table->string('fechaP')->nullable();;
+            $table->string('fecha_publicacion')->nullable();;
             $table->unsignedInteger('bloque_id');
+            $table->unsignedInteger('categoria_id');
         });
     }
 
