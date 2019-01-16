@@ -22,6 +22,13 @@ class CreateUsuariosTable extends Migration
             $table->string('contrasenia','50');
             $table->string('email','150');
         });
+        DB::table('usuario')->insert([
+            'nombre'=>'Diego',
+            'apellido'=>'Perez Frias',
+            'usuario'=>'11',
+            'contrasenia'=>'11',
+            'email'=>'a@a.c'
+        ]);
     }
 
     /**
