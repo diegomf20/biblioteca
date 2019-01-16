@@ -7,4 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class libro extends Model
 {
     protected $table='libro';
+    
+    public function bloque(){
+        return $this->belongsTo('App\model\bloque');
+    }
+    public function categoria(){
+        return $this->belongsTo('App\model\categoria');
+    }
+
 }

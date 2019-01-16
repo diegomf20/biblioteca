@@ -63,13 +63,26 @@
                                 </div>
                                 <div class="form-group col-sm-3">
                                     <label for="">Bloque:</label>
+                                    <select name="bloque_id" class="form-control  {{ $errors->has('bloque_id') ? 'input-error' : '' }}" value="{{ old('bloque_id') }}">
+                                        @foreach($bloques as $bloque)
+                                            <option value="{{$bloque->id}}">{{$bloque->nombre_bloque}}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('bloque_id'))
+                                        <span class="error">
+                                            <strong>{{ $errors->first('bloque_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                {{-- <div class="form-group col-sm-3">
+                                    <label for="">Bloque:</label>
                                     <input name=bloque type="text" class="form-control  {{ $errors->has('bloque') ? 'input-error' : '' }}" value="{{ old('bloque') }}">
                                     @if ($errors->has('bloque'))
                                         <span class="error">
                                             <strong>{{ $errors->first('bloque') }}</strong>
                                         </span>
                                     @endif
-                                </div>
+                                </div> --}}
                                 <div class="form-group col-sm-3">
                                     <label for="">Fila:</label>
                                     <input name=fila type="text" class="form-control  {{ $errors->has('fila') ? 'input-error' : '' }}" value="{{ old('fila') }}">

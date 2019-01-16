@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\model\prestamo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PrestamoController extends Controller
 {
@@ -14,7 +15,16 @@ class PrestamoController extends Controller
      */
     public function index()
     {
-        //
+        DB::beginTransaction();
+        try {
+            $prestamos=prestamo::all();
+            DB::commit();
+            return view('prestamo.index',compact('prestamos'));    //code...
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('prestamo.index');
+        }
+        
     }
 
     /**
@@ -24,7 +34,7 @@ class PrestamoController extends Controller
      */
     public function create()
     {
-        //
+        return view('prestamo.new');
     }
 
     /**
@@ -35,7 +45,26 @@ class PrestamoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+
+            $prestamo= new prestamo();
+            $prestamo->fecha_prestamo=$request->get('fecha_prestamo');
+            $prestamo->fecha_entrega=$request->get('fecha_entrega');
+            $prestamo->estado='P';
+            $prestamo->estudiante_id=$request->get('estudiante_id');
+            $prestamo->usuario_id=$request->get('usuario_id');
+            $prestamo->libro_id=$request->get('libro_id');
+            $prestamo->save();
+            DB::commit();
+            return redirect()->route('estudiante.index')
+                    ->with('mensaje', Mensaje::success('Se registró correctamente el prestamo'));
+        }catch(\Exception $e){
+            DB::rollback();
+            $error = $e->getMessage();
+            return redirect()->back()->with('mensaje', Mensaje::danger ('El préstamo no se ha podido registrar.'.'<br>'.$error));;
+        };
+        
     }
 
     /**
@@ -46,7 +75,15 @@ class PrestamoController extends Controller
      */
     public function show($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $prestamo=prestamo::where('id',$id);
+            DB::commit();
+            return view('prestamo.show',compact('prestamo'));  
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back();
+        }
     }
 
     /**
@@ -57,7 +94,16 @@ class PrestamoController extends Controller
      */
     public function edit($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $prestamo=prestamo::where('id',$id);
+            DB::commit();
+            return view('prestamo.edit',compact('prestamo'));  
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back();
+        }
+
     }
 
     /**
@@ -69,7 +115,21 @@ class PrestamoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+
+            $prestamo=prestamo::where('id',$id)->first();
+            $prestamo->fecha_entrega=$request->get('fecha_entrega');
+            $prestamo->estado='E';
+            $prestamo->save();
+            DB::commit(); 
+            return redirect()->route('estudiante.index')
+                    ->with('mensaje', Mensaje::success('El estudiante devolvio el libro'));
+        }catch(\Exception $e){
+            DB::rollback();
+            $error = $e->getMessage();
+            return redirect()->back()->with('mensaje', Mensaje::danger ('Ocurrio un error'.'<br>'.$error));;
+        };
     }
 
     /**
@@ -81,5 +141,9 @@ class PrestamoController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function buscar(Resquest $request)
+    {
+        $query=$request->get('buscar');
     }
 }

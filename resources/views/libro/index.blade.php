@@ -51,6 +51,7 @@
                                         <th>Autor</th>
                                         <th>Bloque</th>
                                         <th>Filas</th>
+                                        <th>Categoria</th>
                                         <th>Editar</th>
                                     </tr>                                
                                 </thead>
@@ -60,9 +61,10 @@
                                         <td>{{$libro->codigo}}</td>
                                         <td>{{$libro->titulo}}</td>
                                         <td>{{$libro->autor}}</td>
-                                        <td>{{$libro->bloque_id}}</td>
+                                        {{-- <td>{{$libro->bloque_id}}</td> --}}
+                                        <td>{{$libro->bloque->nombre_bloque}}</td>
                                         <td>{{$libro->fila}}</td>
-                                        <td>{{$libro->categoria_id}}</td>
+                                        <td>{{$libro->categoria->nombre_categoria}}</td>
                                         <td><a class="btn btn-success" href="{{route('libro.edit',$libro->id)}}">Edit</a></td>
                                     </tr>
                                 @endforeach

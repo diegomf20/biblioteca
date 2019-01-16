@@ -16,18 +16,20 @@ class CreateCategoriasTable extends Migration
         Schema::create('categoria', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('nombre_bloque','50');
-            $table->integer('fila');
+            $table->string('nombre_categoria','50');
         });
 
         DB::table('categoria')->insert([
-            'nombre_bloque'=>'Libro',
+            'nombre_categoria'=>'Libro',
         ]);
         DB::table('categoria')->insert([
-            'nombre_bloque'=>'Revista',
+            'nombre_categoria'=>'Revista',
         ]);
         DB::table('categoria')->insert([
-            'nombre_bloque'=>'Catálogo',
+            'nombre_categoria'=>'Catálogo',
+        ]);
+        DB::table('categoria')->insert([
+            'nombre_categoria'=>'Articulo',
         ]);
     }
 

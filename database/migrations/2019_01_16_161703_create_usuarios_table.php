@@ -17,14 +17,14 @@ class CreateUsuariosTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('nombre','150');
-            $table->string('aplellido','150');
+            $table->string('apellido','150');
             $table->string('usuario','50');
             $table->string('contrasenia','50');
             $table->string('email','150');
         });
         DB::table('usuario')->insert([
             'nombre'=>'Diego',
-            'apellido'=>'Perez Frias',
+            'apellido'=>'Perez',
             'usuario'=>'11',
             'contrasenia'=>'11',
             'email'=>'a@a.c'

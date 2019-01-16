@@ -7,6 +7,7 @@ use App\model\categoria;
 use App\Logica\Mensaje;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\model\bloque;
 
 class LibroController extends Controller
 {
@@ -30,7 +31,8 @@ class LibroController extends Controller
     public function create()
     {
         $categorias=categoria::all();
-        return view('libro.new',compact('categorias'));
+        $bloques=bloque::all();
+        return view('libro.new',compact('categorias','bloques'));
     }
 
     /**
@@ -50,7 +52,7 @@ class LibroController extends Controller
             $libro->codigo=$request->get('codigo');
             $libro->descripcion=$request->get('descripcion');
             $libro->fecha_publicacion=$request->get('fecha_publicacion');
-            $libro->bloque_id=$request->get('bloque');
+            $libro->bloque_id=$request->get('bloque_id');
             $libro->categoria_id=$request->get('categoria_id');
             $libro->save();
             DB::commit();
