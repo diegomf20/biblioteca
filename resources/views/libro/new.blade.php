@@ -61,7 +61,7 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group col-sm-3">
+                                <div class="form-group col-sm-2">
                                     <label for="">Bloque:</label>
                                     <select name="bloque_id" class="form-control  {{ $errors->has('bloque_id') ? 'input-error' : '' }}" value="{{ old('bloque_id') }}">
                                         @foreach($bloques as $bloque)
@@ -83,12 +83,21 @@
                                         </span>
                                     @endif
                                 </div> --}}
-                                <div class="form-group col-sm-3">
+                                <div class="form-group col-sm-2">
                                     <label for="">Fila:</label>
                                     <input name=fila type="text" class="form-control  {{ $errors->has('fila') ? 'input-error' : '' }}" value="{{ old('fila') }}">
                                     @if ($errors->has('fila'))
                                         <span class="error">
                                             <strong>{{ $errors->first('fila') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <label for="">Unidad:</label>
+                                    <input name=unidad type="text" class="form-control  {{ $errors->has('unidad') ? 'input-error' : '' }}" value="{{ old('unidad') }}">
+                                    @if ($errors->has('unidad'))
+                                        <span class="error">
+                                            <strong>{{ $errors->first('unidad') }}</strong>
                                         </span>
                                     @endif
                                 </div>

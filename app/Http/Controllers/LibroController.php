@@ -51,6 +51,7 @@ class LibroController extends Controller
             $libro->fila=$request->get('fila');
             $libro->codigo=$request->get('codigo');
             $libro->descripcion=$request->get('descripcion');
+            $libro->unidad=$request->get('unidad');
             $libro->fecha_publicacion=$request->get('fecha_publicacion');
             $libro->bloque_id=$request->get('bloque_id');
             $libro->categoria_id=$request->get('categoria_id');
@@ -105,6 +106,7 @@ class LibroController extends Controller
             $libro->fila=$request->get('fila');
             $libro->codigo=$request->get('codigo');
             $libro->descripcion=$request->get('descripcion');
+            $libro->unidad=$request->get('unidad');
             $libro->fechaP=$request->get('fecha_publicacion');
             $libro->autor=$request->get('bloque');
             $libro->save();

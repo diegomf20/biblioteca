@@ -49,6 +49,7 @@
                                         <th>Codigo</th>
                                         <th>Titulo</th>
                                         <th>Autor</th>
+                                        <th>Unidades</th>
                                         <th>Bloque</th>
                                         <th>Filas</th>
                                         <th>Categoria</th>
@@ -61,6 +62,7 @@
                                         <td>{{$libro->codigo}}</td>
                                         <td>{{$libro->titulo}}</td>
                                         <td>{{$libro->autor}}</td>
+                                        <td>{{$libro->unidad}}</td>
                                         {{-- <td>{{$libro->bloque_id}}</td> --}}
                                         <td>{{$libro->bloque->nombre_bloque}}</td>
                                         <td>{{$libro->fila}}</td>
@@ -72,7 +74,7 @@
                             </table>
                         </div>
                         <div class="col-12 justify-content-sm-center">
-                            {{ $libros->links() }}
+                                {{ $libros->links() }}
                         </div>
                     </div>
                 </div>
