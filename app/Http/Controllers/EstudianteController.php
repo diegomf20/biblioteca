@@ -54,6 +54,7 @@ class EstudianteController extends Controller
                     ->with('mensaje', Mensaje::success('Se registró correctamente el estudiante '.$estudiante->nombre.' '.$estudiante->apellido));
         }catch(\Exception $e){
             DB::rollback();
+            dd($e);
             $error = $e->getMessage();
             return redirect()->back()->with('mensaje', Mensaje::danger ('El estudiante '.$estudiante->nombre.' '.$estudiante->apellido .' no se ha podido registrar.'.'<br>'.$error));;
         };

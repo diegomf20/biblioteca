@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class=titulo>
+    <div class=titulo>
         <span><i class="fas fa-boxes"></i> Nuevo Libro </span>
     </div>
     <div class="col-12">
