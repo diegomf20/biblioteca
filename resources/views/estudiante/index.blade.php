@@ -12,7 +12,7 @@
                     <div class="col-sm-8">
                         <h4>
                             Lista de Estudiantes
-                            <a class="btn btn-primary mb-3" href="{{route('libro.create')}}">Nuevo</a> 
+                            <a class="btn btn-primary mb-3" href="{{route('estudiante.create')}}">Nuevo</a> 
                         </h4>
                     </div>
                 </div>
