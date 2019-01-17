@@ -32,10 +32,10 @@
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="">Teléfono:</label>
-                                <input name=apellido type="text" class="form-control  {{ $errors->has('apellido') ? 'input-error' : '' }}" value="{{ old('apellido') }}">
-                                @if ($errors->has('apellido'))
+                                <input name=telefono type="text" class="form-control  {{ $errors->has('telefono') ? 'input-error' : '' }}" value="{{ old('telefono') }}">
+                                @if ($errors->has('telefono'))
                                     <span class="error">
-                                        <strong>{{ $errors->first('apellido') }}</strong>
+                                        <strong>{{ $errors->first('telefono') }}</strong>
                                     </span>
                                 @endif
                             </div>

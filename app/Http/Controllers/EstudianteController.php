@@ -6,6 +6,7 @@ use App\model\estudiante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Logica\Mensaje;
+use App\Http\Requests\EstudianteValidation;
 
 class EstudianteController extends Controller
 {
@@ -36,7 +37,7 @@ class EstudianteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EstudianteValidation $request)
     {
         DB::beginTransaction();
         try{
@@ -47,7 +48,7 @@ class EstudianteController extends Controller
             $estudiante->nombre=$request->get('nombre');
             $estudiante->apellido=$request->get('apellido');
             $estudiante->fecha_vence=$request->get('fecha_vence');
-            $estudiante->telefono=$request->get('telefoono');
+            $estudiante->telefono=$request->get('telefono');
             $estudiante->save();
             DB::commit();
             return redirect()->route('estudiante.index')
@@ -58,7 +59,6 @@ class EstudianteController extends Controller
             $error = $e->getMessage();
             return redirect()->back()->with('mensaje', Mensaje::danger ('El estudiante '.$estudiante->nombre.' '.$estudiante->apellido .' no se ha podido registrar.'.'<br>'.$error));;
         };
-
     }
 
     /**
@@ -93,7 +93,7 @@ class EstudianteController extends Controller
             $estudiante=estudiante::where('id',$id)->first();
             DB::commit();
             return view('estudiante.edit',compact('estudiante'));
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->route('estudiante.index');
         }
@@ -106,7 +106,7 @@ class EstudianteController extends Controller
      * @param  \App\model\estudiante  $estudiante
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EstudianteValidation $request, $id)
     {
         DB::beginTransaction();
         try{
