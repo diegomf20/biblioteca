@@ -120,7 +120,7 @@ class EstudianteController extends Controller
             $estudiante->save();
             DB::commit();
             return redirect()->route('estudiante.index')
-                    ->with('mensaje', Mensaje::success('Los datos del estudiante '.$estudiante->nombre.' '.$estudiante->apellido).' se actualizaron correctamente');
+                    ->with('mensaje', Mensaje::success('Los datos del estudiante '.$estudiante->nombre.' '.$estudiante->apellido.' se actualizaron correctamente'));
         }catch(\Exception $e){
             DB::rollback();
             $error = $e->getMessage();
