@@ -940,6 +940,7 @@ Reemplaza flecha del acordeon tipo menu
   padding: 20px; 
   background-color: #07B28E;
   text-align: center;
+  margin-bottom: 25px;
 }
 .titulo span{
   color: #fff;
@@ -947,7 +948,7 @@ Reemplaza flecha del acordeon tipo menu
   font-size: 50px;
 }
 .card{
-  background-color:  rgba(0,0,0,.125);
+  background-color: #fff;
   border-top: 3px solid #07B28E;
   border-radius: 0px;
 }

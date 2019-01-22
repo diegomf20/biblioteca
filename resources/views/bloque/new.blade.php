@@ -7,8 +7,8 @@
     <div class="col-12">
         <div class="row justify-content-sm-center">
             <div class="col-sm-6 col-lg-4">
-                <div class="card mt-5 mb-3 pt-3">
-                    <div class="card-heading">
+                <div class="card mb-3">
+                    <div class="card-body">
                         <form action="{{route('bloque.store')}}" method=POST>
                             @csrf
                             <div class="form-group col-12">
@@ -30,7 +30,9 @@
                                 @endif
                             </div>
                             <div class="form-group col-12">
-                                <button type=submit class="form-control btn-primary">Guardar</button>
+                                <button type=submit class="form-control btn-primary">
+                                    <i class="far fa-save"></i> GUARDAR
+                                </button>
                             </div>
                         </form>
                     </div>
