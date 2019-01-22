@@ -21,6 +21,6 @@ Route::get('/', function () {
 Route::resource('bloque','BloqueController');
 Route::resource('estudiante','EstudianteController');
 Route::resource('libro','LibroController');
-Route::resource('prestamo','PrestamoController');
+Route::resource('prestamo','PrestamoController')->only(['index', 'create','store','update']);
 Route::resource('usuario','UsuarioController');
 Route::resource('bloque','BloqueController');

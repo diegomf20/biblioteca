@@ -1,47 +1,51 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\model\libro;
 use App\model\prestamo;
+use App\model\categoria;
+
+use App\Logica\Mensaje;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class PrestamoController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Muestra el Historial de Prestamos
      */
     public function index()
     {
-        DB::beginTransaction();
         try {
-            $prestamos=prestamo::all();
-            DB::commit();
+            $prestamos=prestamo::with('libro')->get();
             return view('prestamo.index',compact('prestamos'));    //code...
         } catch (\Exception $e) {
-            DB::rollBack();
             return redirect()->route('prestamo.index');
         }
-        
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Muestra la vista de crear un nuevo Prestamo y Muestra los Libros por Filtros
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('prestamo.new');
+        $categorias=categoria::all();
+        $libros=libro::leftJoin('prestamo', 'prestamo.libro_id', '=', 'libro.id')
+        ->select('libro.id','libro.autor','libro.titulo','libro.categoria_id','libro.unidad',DB::raw('COUNT(prestamo.id) as prestado'))
+        ->where([
+            ['categoria_id', 'like','%'.$request->get('categoria').'%'],
+            ['titulo', 'like','%'.$request->get('titulo').'%'],
+            ['autor', 'like','%'.$request->get('autor').'%'],
+        ])
+        ->groupBy(['libro.id','libro.autor','libro.titulo','libro.categoria_id','libro.unidad'])
+        ->where('prestamo.estado','P')
+        ->paginate(2);
+        return view('prestamo.new',compact('categorias','libros'));
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Crea un nuevo Prestamo de Biblioteca
      */
     public function store(Request $request)
     {
@@ -53,11 +57,11 @@ class PrestamoController extends Controller
             $prestamo->fecha_entrega=$request->get('fecha_entrega');
             $prestamo->estado='P';
             $prestamo->estudiante_id=$request->get('estudiante_id');
-            $prestamo->usuario_id=$request->get('usuario_id');
+            $prestamo->usuario_id=1;
             $prestamo->libro_id=$request->get('libro_id');
             $prestamo->save();
             DB::commit();
-            return redirect()->route('estudiante.index')
+            return redirect()->route('prestamo.index')
                     ->with('mensaje', Mensaje::success('Se registró correctamente el prestamo'));
         }catch(\Exception $e){
             DB::rollback();
@@ -68,50 +72,7 @@ class PrestamoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\model\prestamo  $prestamo
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        DB::beginTransaction();
-        try {
-            $prestamo=prestamo::where('id',$id);
-            DB::commit();
-            return view('prestamo.show',compact('prestamo'));  
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back();
-        }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\model\prestamo  $prestamo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        DB::beginTransaction();
-        try {
-            $prestamo=prestamo::where('id',$id);
-            DB::commit();
-            return view('prestamo.edit',compact('prestamo'));  
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back();
-        }
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\model\prestamo  $prestamo
-     * @return \Illuminate\Http\Response
+     * Actualiza el estado del Prestamo y su fecha de entrega
      */
     public function update(Request $request, $id)
     {
@@ -119,31 +80,16 @@ class PrestamoController extends Controller
         try {
 
             $prestamo=prestamo::where('id',$id)->first();
-            $prestamo->fecha_entrega=$request->get('fecha_entrega');
+            $prestamo->fecha_entrega=Carbon::now();;
             $prestamo->estado='E';
             $prestamo->save();
             DB::commit(); 
-            return redirect()->route('estudiante.index')
+            return redirect()->route('prestamo.index')
                     ->with('mensaje', Mensaje::success('El estudiante devolvio el libro'));
         }catch(\Exception $e){
             DB::rollback();
             $error = $e->getMessage();
             return redirect()->back()->with('mensaje', Mensaje::danger ('Ocurrio un error'.'<br>'.$error));;
         };
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\model\prestamo  $prestamo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-    public function buscar(Resquest $request)
-    {
-        $query=$request->get('buscar');
     }
 }

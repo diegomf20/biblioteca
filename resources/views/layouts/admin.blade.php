@@ -61,6 +61,11 @@
                 <span class="nav-link-text"><i class="fas fa-user-graduate"></i> estudiante</span>
             </a>
           </li>
+          <li class="nav-item" data-toggle="tooltip" data-placement="right">
+            <a class="nav-link" href="{{route('prestamo.index')}}">
+              <span class="nav-link-text"><i class="fas fa-user-graduate"></i> Prestamo</span>
+            </a>
+          </li>
         </ul>
       {{-- parte superior --}}
       <ul class="navbar-nav ml-auto">
