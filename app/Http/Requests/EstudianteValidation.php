@@ -24,10 +24,20 @@ class EstudianteValidation extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=>'required',
-            'apellido'=>'required',
+            'nombre'=>'required|min:3',
+            'apellido'=>'required|min:3',
             'fecha_vence'=>'required',
-            'telefono'=>'required'
+            'telefono'=>'required|numeric|between:100000000,999999999',
         ];
     }
+    public function messages()
+    {
+        return [
+            'telefono.min'=>'Debe de tener 9 caracteres',
+            'telefono.max'=>'Debe de tener 9 caracteres',
+            'telefono.between'=>'Debe de tener 9 caracteres',
+        ];
+    }
+
+    
 }

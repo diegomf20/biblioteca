@@ -16,8 +16,10 @@ class LibroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $bautor=$request->get('bautor');
+        
         $categorias=categoria::all();
         $libros=libro::paginate(2);
         return view('libro.index',compact('libros','categorias'));
