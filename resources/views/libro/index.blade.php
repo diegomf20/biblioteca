@@ -21,7 +21,7 @@
                                     </select>
                                 </div>
                                 <div class="col-4 form-group">
-                                    <input type="text" class="form-control" placeholder="Buscar por Autor">
+                                    <input name="bautor" type="text" class="form-control" placeholder="Buscar por Autor">
                                 </div>
                                 <div class="col-4 form-group">
                                     <input type="text" class="form-control" placeholder="Buscar por Titulo">

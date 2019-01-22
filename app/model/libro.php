@@ -15,4 +15,11 @@ class libro extends Model
         return $this->belongsTo('App\model\categoria');
     }
 
+    public function scopeNombre($query, $name)
+    {
+        if( trim($name) != ""){
+            $query->where("titulo", "LIKE", "%$name%");
+        }
+    }
+
 }
