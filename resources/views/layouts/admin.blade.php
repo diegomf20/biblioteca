@@ -75,16 +75,7 @@
                 {{ "Diego Mendoza"}} 
             </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href=""
-                onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();">
-                <i class="fas fa-sign-out-alt"></i> Salir
-            </a>
-            <form id="logout-form" action="" method="POST" style="display: none;">
-                {{ csrf_field() }}
-            </form>
-        </li>
+        
       </ul>
     </div>
   </nav>

@@ -19,13 +19,33 @@ class LibroController extends Controller
      */
     public function index(Request $request)
     {
+        if($request->has('categoria')||$request->has('titulo')||$request->has('autor')){
+            $search=[
+                "categoria" =>$request->get('categoria'),
+                "titulo"    =>$request->get('titulo'),
+                "autor"     =>$request->get('autor')
+            ];
+            $request->session()->flash('search-libro', $search);
+        }else{
+            if($request->session()->has('search-libro')){
+                $request->session()->flash('search-libro', $request->session()->get('search-libro'));
+                $search=$request->session()->get('search-libro');
+            }else{
+                $search=["categoria" =>"","titulo"=>"","autor"=>""];
+            }
+        }
         $categorias=categoria::all();
         $libros=libro::where([
-            ['categoria_id', 'like','%'.$request->get('categoria').'%'],
-            ['titulo', 'like','%'.$request->get('titulo').'%'],
-            ['autor', 'like','%'.$request->get('autor').'%'],
-        ])->paginate(8);
-        return view('libro.index',compact('libros','categorias'));
+                    ['categoria_id', 'like','%'.$search['categoria'].'%'],
+                    ['autor', 'like','%'.$search['autor'].'%'],
+                ])
+                ->where(function ($query) use ($search) {
+                    return $query->where('titulo', 'like','%'.$search['titulo'].'%')
+                        ->orWhere('descripcion', 'like','%'.$search['titulo'].'%');
+                })
+                ->paginate(8);
+
+        return view('libro.index',compact('libros','categorias','search'));
     }
 
     /**

@@ -28,39 +28,41 @@
                         <button type=submit class="btn btn-info">Buscar</button>
                     </div>
                 </form>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Fecha de Prestamo</th>
-                            <th>Fecha de Entrega</th>
-                            <th>Titulo</th>
-                            <th>Nombre de Estudiante</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($prestamos as $prestamo)
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
-                                <td>{{ $prestamo->fecha_prestamo }}</td>
-                                <td>{{ $prestamo->fecha_entrega }}</td>
-                                <td>{{ $prestamo->libro->titulo }}</td>
-                                <td>{{ $prestamo->estudiante->nombre }} {{ $prestamo->estudiante->apellido }}</td>
-                                <td>
-                                    @if ($prestamo->estado=="P")
-                                        <form action="{{route('prestamo.update',$prestamo->id)}}" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <button type="submit" class="btn btn-success">PRESTADO</button>    
-                                        </form>
-                                    @else
-                                        ENTREGADO
-                                    @endif
-                                </td>
+                                <th>Fecha de Prestamo</th>
+                                <th>Fecha de Entrega</th>
+                                <th>Titulo</th>
+                                <th>Nombre de Estudiante</th>
+                                <th>Estado</th>
                             </tr>
-                        @endforeach
-        
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($prestamos as $prestamo)
+                                <tr>
+                                    <td>{{ $prestamo->fecha_prestamo }}</td>
+                                    <td>{{ $prestamo->fecha_entrega }}</td>
+                                    <td>{{ $prestamo->libro->titulo }}</td>
+                                    <td>{{ $prestamo->estudiante->nombre }} {{ $prestamo->estudiante->apellido }}</td>
+                                    <td>
+                                        @if ($prestamo->estado=="P")
+                                            <form action="{{route('prestamo.update',$prestamo->id)}}" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="btn btn-success">PRESTADO</button>    
+                                            </form>
+                                        @else
+                                            ENTREGADO
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+            
+                        </tbody>
+                    </table>
+                </div>
                 <div class="row">
                     <div class="col-12 justify-content-sm-center">
                         {{ $prestamos->links() }}

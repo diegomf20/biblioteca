@@ -15,10 +15,24 @@ class EstudianteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $estudiantes= estudiante::all();
-        return view('estudiante.index', compact('estudiantes'));
+        if($request->has('nombre')){
+            $search=["nombre" =>$request->get('nombre')];
+            $request->session()->flash('search-prestamo', $search);
+        }else{
+            if($request->session()->has('search-prestamo')){
+                $request->session()->flash('search-prestamo', $request->session()->get('search-prestamo'));
+                $search=$request->session()->get('search-prestamo');
+            }else{
+                $search=["nombre" =>""];
+            }
+        }
+        $estudiantes= estudiante::where('estudiante.nombre','like','%'.$search['nombre'].'%')
+                        ->orWhere('estudiante.apellido','like','%'.$search['nombre'].'%')
+                        ->paginate(1);
+
+        return view('estudiante.index', compact('estudiantes','search'));
     }
 
     /**

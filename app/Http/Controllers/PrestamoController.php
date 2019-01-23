@@ -63,7 +63,6 @@ class PrestamoController extends Controller
             }
         }
 
-        echo $search['autor'];
         $categorias=categoria::all();
         $libros=libro::leftJoin('prestamo', 'prestamo.libro_id', '=', 'libro.id')
         ->select('libro.id','libro.autor','libro.titulo','libro.categoria_id','libro.unidad',DB::raw('COUNT(prestamo.id) as prestado'))
