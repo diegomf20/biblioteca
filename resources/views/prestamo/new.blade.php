@@ -90,7 +90,7 @@
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label for="">Estudiante:</label>
-                                <input id=txt-id-estudiante name="estudiante_id" type="text" hidden value="1">
+                                <input id=txt-id-estudiante name="estudiante_id" type="text" hidden value="">
                                 <input id=txt-estudiante  class="form-control" type="text" required> 
                             </div>
                             <div class="col-sm-3 form-group">
@@ -123,5 +123,24 @@
             $('#txt-libro').val(libro.titulo);
             $('#txt-autor').val(libro.autor);
         });
+
+        $("#txt-estudiante").keyup(function(){
+            console.log($('#txt-estudiante').val());
+            // console.log('q');
+            $( "#txt-estudiante" ).autocomplete({
+                source: "{!!URL::route('estudiante.buscar')!!}",
+                minLength: 3,
+                select: function(event, ui) {
+                    $('#txt-estudiante').val(ui.item.value);
+                    $('#txt-id-estudiante').val(ui.item.id);
+                    console.log($('#txt-estudiante').val());
+                },
+                search: function( event, ui ) {
+                    $('#txt-id-estudiante').val('');
+                }                
+            });  
+        });
+
+
     </script>
 @endsection

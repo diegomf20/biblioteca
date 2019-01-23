@@ -24,3 +24,4 @@ Route::resource('libro','LibroController');
 Route::resource('prestamo','PrestamoController')->only(['index', 'create','store','update']);
 Route::resource('usuario','UsuarioController');
 Route::resource('bloque','BloqueController');
+Route::get('buscar','EstudianteController@buscarestudiante')->name('estudiante.buscar');

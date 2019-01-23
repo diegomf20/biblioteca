@@ -59,12 +59,9 @@ $(document).ready(function(){
 // alert-success operacion 
 
 window.setTimeout(function() {      
-    $(".myAlert-top").fadeTo(500, 0).slideUp(500, function(){
+    $(".alert.desvaneces").fadeTo(500, 0).slideUp(500, function(){
         $(this).remove(); 
     });
-    // $(".alert.desvanecen").fadeTo(500, 0).slideUp(500, function(){
-    //   $(this).remove(); 
-    // });
   }, 4000);
 
 

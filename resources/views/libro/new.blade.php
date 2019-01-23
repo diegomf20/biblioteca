@@ -24,7 +24,9 @@
                                 </div>
                                 <div class="form-group col-sm-3">
                                     <label for="">Cantidad:</label>
-                                    <input name=unidad type="text" class="form-control  {{ $errors->has('unidad') ? 'input-error' : '' }}" value="{{ old('unidad')}}">
+                                    <input name=unidad type="text" class="form-control  {{ $errors->has('unidad') ? 'input-error' : '' }}" 
+                                    value="{{old('unidad')}}">
+                                   
                                     @if ($errors->has('unidad'))
                                         <span class="error">
                                             <strong>{{ $errors->first('unidad') }}</strong>
