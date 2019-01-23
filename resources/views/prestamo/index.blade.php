@@ -2,13 +2,20 @@
 
 @section('content')
     <div class="titulo">
-        <span><i class="fas fa-boxes"></i> Prestamos </span>
+        <span><i class="fas fa-boxes"></i> Préstamos </span>
     </div>
     <?=session('mensaje','')?>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                
+            </div>
+        </div>
+    </div>
     <div class="col-12 mt-3 mb-3">
         <div class="row">
             <div class="col-sm-8">
-                <h4>Listas de Prestamos</h4>
+                <h4>Listas de Préstamos</h4>
             </div>
             <div class="col-sm-4">
                 <a class="btn btn-info" href="{{ route('prestamo.create') }}">Nuevo Prestamo</a>

@@ -34,10 +34,10 @@
                         </select>
                     </div>
                     <div class="col-4 form-group">
-                        <input name=autor type="text" class="form-control" placeholder="Buscar por Autor">
+                        <input name=autor type="text" class="form-control" placeholder="Buscar por Autor" value="{{$search['autor']}}">
                     </div>
                     <div class="col-4 form-group">
-                        <input name=titulo type="text" class="form-control" placeholder="Buscar por Titulo">
+                        <input name=titulo type="text" class="form-control" placeholder="Buscar por Titulo" value="{{$search['titulo']}}">
                     </div>
                     <div class="col-2 form-group">
                         <button type=submit class="btn btn-info">Buscar</button>
