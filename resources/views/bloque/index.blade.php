@@ -4,6 +4,7 @@
     <div class=titulo>
         <span><i class="fas fa-boxes"></i> Bloques </span>
     </div>
+    <?=session('mensaje','')?>
     <div class="col-12">
         <div class="row justify-content-sm-center">
             <div class="col-sm-8 col-lg-6">

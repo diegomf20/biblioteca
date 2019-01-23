@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\model\bloque;
+use App\Logica\Mensaje;
 use Illuminate\Http\Request;
 use App\Http\Requests\BloqueValidation;
 use Illuminate\Support\Facades\DB;
@@ -45,23 +46,14 @@ class BloqueController extends Controller
             $bloque->filas=$request->get('filas');
             $bloque->save();
             DB::commit();
-            return redirect()->route('bloque.index');
+            return redirect()->route('bloque.index')
+                ->with('mensaje', Mensaje::success('Se registró correctamente el bloque '.$bloque->nombre_bloque));
         }catch(\Exception $e){
-            DB::rolback();
-            return redirect()->route('bloque.index');
+            DB::rollback();
+            return redirect()->back()
+                ->with('mensaje', Mensaje::danger('Error: '.$e->getMessage()));
         }
         
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\model\bloque  $bloque
-     * @return \Illuminate\Http\Response
-     */
-    public function show($bloque)
-    {
-        //
     }
 
     /**
@@ -99,21 +91,12 @@ class BloqueController extends Controller
             $bloque->filas=$request->get('filas');
             $bloque->save();
             DB::commit();
-            return redirect()->route('bloque.index');
+            return redirect()->route('bloque.index')
+                ->with('mensaje', Mensaje::success('Se actualizo el bloque '.$bloque->nombre_bloque));    
         }catch(\Exception $e){
             DB::rolback();
-            return redirect()->route('bloque.index');
+            return redirect()->back()
+                ->with('mensaje', Mensaje::danger('Error: '.$e->getMessage()));
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\model\ $bloque
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($bloque)
-    {
-        //
     }
 }

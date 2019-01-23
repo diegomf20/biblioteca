@@ -80,16 +80,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12">
-        <div class="row justify-content-sm-center">
-            <div class="col-sm-12">
-                <div class="card mt-3 mb-3 pt-3">
-                    <div class="card-heading">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 @endsection
 @section('script')
 
