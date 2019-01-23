@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="form-group col-sm-3">
                                     <label for="">Cantidad:</label>
-                                    <input name=unidad type="text" class="form-control  {{ $errors->has('unidad') ? 'input-error' : '' }}" value="{{ old('unidad') }}">
+                                    <input name=unidad type="text" class="form-control  {{ $errors->has('unidad') ? 'input-error' : '' }}" value="{{ old('unidad')}}">
                                     @if ($errors->has('unidad'))
                                         <span class="error">
                                             <strong>{{ $errors->first('unidad') }}</strong>
@@ -95,7 +95,7 @@
                                 </div>
                                 <div class="form-group col-12">
                                     <label for="">Descripcion:</label>
-                                    <input name=descripcion type="text" class="form-control  {{ $errors->has('descripcion') ? 'input-error' : '' }}" value="{{ old('descripcion') }}">
+                                    <textarea name=descripcion type="text" class="form-control  {{ $errors->has('descripcion') ? 'input-error' : '' }}" value="{{ old('descripcion') }}" rows=1 ></textarea>
                                     @if ($errors->has('descripcion'))
                                         <span class="error">
                                             <strong>{{ $errors->first('descripcion') }}</strong>
