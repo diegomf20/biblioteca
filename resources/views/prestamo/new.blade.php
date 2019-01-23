@@ -66,6 +66,11 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="row">
+                    <div class="col-12 justify-content-sm-center">
+                        {{ $libros->links() }}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="tab-pane fade" id="datos" role="tabpanel" aria-labelledby="datos-tab">

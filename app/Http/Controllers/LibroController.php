@@ -18,10 +18,12 @@ class LibroController extends Controller
      */
     public function index(Request $request)
     {
-        $bautor=$request->get('bautor');
-        
         $categorias=categoria::all();
-        $libros=libro::paginate(2);
+        $libros=libro::where([
+            ['categoria_id', 'like','%'.$request->get('categoria').'%'],
+            ['titulo', 'like','%'.$request->get('titulo').'%'],
+            ['autor', 'like','%'.$request->get('autor').'%'],
+        ])->paginate(8);
         return view('libro.index',compact('libros','categorias'));
     }
 
@@ -88,7 +90,10 @@ class LibroController extends Controller
      */
     public function edit($id)
     {
-        //
+        $libro = libro::where('id',$id)->first();
+        $categorias=categoria::all();
+        $bloques=bloque::all();
+        return view('libro.edit',compact('libro','categorias','bloques'));
     }
 
     /**
@@ -109,8 +114,9 @@ class LibroController extends Controller
             $libro->codigo=$request->get('codigo');
             $libro->descripcion=$request->get('descripcion');
             $libro->unidad=$request->get('unidad');
-            $libro->fechaP=$request->get('fecha_publicacion');
-            $libro->autor=$request->get('bloque');
+            $libro->fecha_publicacion=$request->get('fecha_publicacion');
+            $libro->bloque_id=$request->get('bloque_id');
+            $libro->categoria_id=$request->get('categoria_id');
             $libro->save();
             DB::commit();
             return redirect()->route('libro.index')

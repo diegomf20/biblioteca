@@ -40,7 +40,7 @@ class PrestamoController extends Controller
         ])
         ->groupBy(['libro.id','libro.autor','libro.titulo','libro.categoria_id','libro.unidad'])
         ->where('prestamo.estado','P')
-        ->paginate(2);
+        ->paginate(8);
         return view('prestamo.new',compact('categorias','libros'));
     }
 

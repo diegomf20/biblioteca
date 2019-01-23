@@ -4,15 +4,16 @@
     <div class=titulo>
         <span><i class="fas fa-boxes"></i> Nuevo Libro </span>
     </div>
+    <?=session('mensaje','')?>
     <div class="col-12">
         <div class="row justify-content-sm-center">
-            <div class="col-sm-8 col-lg-6">
-                <div class="card mt-5 mb-3 pt-3">
-                    <div class="card-heading col-12">
+            <div class="col-sm-10 col-lg-8">
+                <div class="card mb-3">
+                    <div class="card-body">
                         <form action="{{route('libro.store')}}" method=POST>
                             <div class="row">
                                 @csrf
-                                <div class="form-group col-sm-6">
+                                <div class="form-group col-sm-3">
                                     <label for="">Codigo:</label>
                                     <input name=codigo type="text" class="form-control  {{ $errors->has('codigo') ? 'input-error' : '' }}" value="{{ old('codigo') }}">
                                     @if ($errors->has('codigo'))
@@ -21,12 +22,25 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="">Fecha Publicacion:</label>
-                                    <input name=fecha_publicacion type="date" class="form-control  {{ $errors->has('fecha_publicacion') ? 'input-error' : '' }}" value="{{ old('fecha_publicacion') }}">
-                                    @if ($errors->has('fecha_publicacion'))
+                                <div class="form-group col-sm-3">
+                                    <label for="">Cantidad:</label>
+                                    <input name=unidad type="text" class="form-control  {{ $errors->has('unidad') ? 'input-error' : '' }}" value="{{ old('unidad') }}">
+                                    @if ($errors->has('unidad'))
                                         <span class="error">
-                                            <strong>{{ $errors->first('fecha_publicacion') }}</strong>
+                                            <strong>{{ $errors->first('unidad') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="">Categoria:</label>
+                                    <select name="categoria_id" class="form-control  {{ $errors->has('categoria_id') ? 'input-error' : '' }}" value="{{ old('categoria_id') }}">
+                                        @foreach($categorias as $categoria)
+                                            <option value="{{$categoria->id}}">{{$categoria->nombre_categoria}}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('categoria_id'))
+                                        <span class="error">
+                                            <strong>{{ $errors->first('categoria_id') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -49,19 +63,15 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label for="">Categoria:</label>
-                                    <select name="categoria_id" class="form-control  {{ $errors->has('categoria_id') ? 'input-error' : '' }}" value="{{ old('categoria_id') }}">
-                                        @foreach($categorias as $categoria)
-                                            <option value="{{$categoria->id}}">{{$categoria->nombre_categoria}}</option>
-                                        @endforeach
-                                    </select>
-                                    @if ($errors->has('categoria_id'))
+                                    <label for="">Fecha Publicacion:</label>
+                                    <input name=fecha_publicacion type="date" class="form-control  {{ $errors->has('fecha_publicacion') ? 'input-error' : '' }}" value="{{ old('fecha_publicacion') }}">
+                                    @if ($errors->has('fecha_publicacion'))
                                         <span class="error">
-                                            <strong>{{ $errors->first('categoria_id') }}</strong>
+                                            <strong>{{ $errors->first('fecha_publicacion') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group col-sm-2">
+                                <div class="form-group col-sm-3">
                                     <label for="">Bloque:</label>
                                     <select name="bloque_id" class="form-control  {{ $errors->has('bloque_id') ? 'input-error' : '' }}" value="{{ old('bloque_id') }}">
                                         @foreach($bloques as $bloque)
@@ -74,30 +84,12 @@
                                         </span>
                                     @endif
                                 </div>
-                                {{-- <div class="form-group col-sm-3">
-                                    <label for="">Bloque:</label>
-                                    <input name=bloque type="text" class="form-control  {{ $errors->has('bloque') ? 'input-error' : '' }}" value="{{ old('bloque') }}">
-                                    @if ($errors->has('bloque'))
-                                        <span class="error">
-                                            <strong>{{ $errors->first('bloque') }}</strong>
-                                        </span>
-                                    @endif
-                                </div> --}}
-                                <div class="form-group col-sm-2">
+                                <div class="form-group col-sm-3">
                                     <label for="">Fila:</label>
                                     <input name=fila type="text" class="form-control  {{ $errors->has('fila') ? 'input-error' : '' }}" value="{{ old('fila') }}">
                                     @if ($errors->has('fila'))
                                         <span class="error">
                                             <strong>{{ $errors->first('fila') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label for="">Unidad:</label>
-                                    <input name=unidad type="text" class="form-control  {{ $errors->has('unidad') ? 'input-error' : '' }}" value="{{ old('unidad') }}">
-                                    @if ($errors->has('unidad'))
-                                        <span class="error">
-                                            <strong>{{ $errors->first('unidad') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -110,9 +102,10 @@
                                         </span>
                                     @endif
                                 </div>
-                                
                                 <div class="form-group col-12">
-                                    <button type=submit class="form-control btn-primary">Guardar</button>
+                                    <button type=submit class="form-control btn-primary">
+                                            <i class="far fa-save"></i> Guardar
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -121,7 +114,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 @section('script')
 
