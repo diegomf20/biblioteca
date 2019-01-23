@@ -119,22 +119,5 @@ class PrestamoController extends Controller
         };
     }
 
-    public function buscarestudiante(Request $request){
-        $term = $request->term;
-        $results = array();
-        
-        dd('hopla');
-        
-        $queries = estudiante::select('nombre','apellido', 'id')
-                        ->where('nombre', 'LIKE', "%{$term}%")
-                        ->orWhere('apellido', 'LIKE', "%{$term}%")
-                        ->take(5)
-                        ->get();
-        
-        foreach ($queries as $query)
-        {
-            $results[] = [ 'id' => $query->id, 'value' =>$query->nombre.' '.$query->apellido ];
-        }
-        return response()->json($results);
-    }
+   
 }
