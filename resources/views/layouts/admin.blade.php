@@ -47,27 +47,27 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
           <li class="nav-item" data-toggle="tooltip" data-placement="right">
-            <a class="nav-link" href="{{route('bloque.index')}}">
-                <span class="nav-link-text"><i class="fas fa-boxes"></i>  Bloque</span>
-            </a>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right">
             <a class="nav-link" href="{{route('libro.index')}}">
                 <span class="nav-link-text"><i class="fas fa-book"></i> Libro</span>
-            </a>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right">
-            <a class="nav-link" href="{{route('estudiante.index')}}">
-                <span class="nav-link-text"><i class="fas fa-user-graduate"></i> estudiante</span>
-            </a>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right">
-            <a class="nav-link" href="{{route('prestamo.index')}}">
-              <span class="nav-link-text"><i class="fas fa-user-graduate"></i> Prestamo</span>
-            </a>
-          </li>
-        </ul>
-      {{-- parte superior --}}
+              </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right">
+              <a class="nav-link" href="{{route('prestamo.index')}}">
+                <span class="nav-link-text"><i class="fas fa-user-graduate"></i> Prestamo</span>
+              </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right">
+                <a class="nav-link" href="{{route('estudiante.index')}}">
+                  <span class="nav-link-text"><i class="fas fa-user-graduate"></i> Estudiante</span>
+                </a>
+              </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right">
+              <a class="nav-link" href="{{route('bloque.index')}}">
+                  <span class="nav-link-text"><i class="fas fa-boxes"></i>  Bloque</span>
+              </a>
+            </li>
+          </ul>
+              {{-- parte superior --}}
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a class="nav-link mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

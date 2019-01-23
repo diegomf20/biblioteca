@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
-<?=session('mensaje','')?>
     <div class=titulo>
         <span><i class="fas fa-boxes"></i> Libros </span>
     </div>
+    <?=session('mensaje','')?>
     <div class="col-12">
         <div class="row justify-content-sm-center">
             <div class="col-sm-12">
