@@ -15,11 +15,27 @@ class PrestamoController extends Controller
     /**
      * Muestra el Historial de Prestamos
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('nombre')){
+            $search=["nombre" =>$request->get('nombre')];
+            $request->session()->flash('search-prestamo', $search);
+        }else{
+            if($request->session()->has('search-prestamo')){
+                $request->session()->flash('search-prestamo', $request->session()->get('search-prestamo'));
+                $search=$request->session()->get('search-prestamo');
+            }else{
+                $search=["nombre" =>""];
+            }
+        }
         try {
-            $prestamos=prestamo::with('libro')->get();
-            return view('prestamo.index',compact('prestamos'));    //code...
+            $prestamos=prestamo::with('libro')
+                ->join('estudiante','estudiante.id',"=",'prestamo.estudiante_id')
+                ->where('estudiante.nombre','like','%'.$search['nombre'].'%')
+                ->orWhere('estudiante.apellido','like','%'.$search['nombre'].'%')
+                ->orderBy('prestamo.estado','asc')
+                ->paginate(8);
+            return view('prestamo.index',compact('prestamos','search'));    //code...
         } catch (\Exception $e) {
             return redirect()->route('prestamo.index');
         }
@@ -37,11 +53,11 @@ class PrestamoController extends Controller
                 "titulo"    =>$request->get('titulo'),
                 "autor"     =>$request->get('autor')
             ];
-            $request->session()->flash('search-prestamo', $search);
+            $request->session()->flash('search-prestamo-libro', $search);
         }else{
-            if($request->session()->has('search-prestamo')){
-                $request->session()->flash('search-prestamo', $request->session()->get('search-prestamo'));
-                $search=$request->session()->get('search-prestamo');
+            if($request->session()->has('search-prestamo-libro')){
+                $request->session()->flash('search-prestamo-libro', $request->session()->get('search-prestamo-libro'));
+                $search=$request->session()->get('search-prestamo-libro');
             }else{
                 $search=["categoria" =>"","titulo"=>"","autor"=>""];
             }
@@ -54,19 +70,15 @@ class PrestamoController extends Controller
         ->where([
             ['categoria_id', 'like','%'.$search['categoria'].'%'],
             ['autor', 'like','%'.$search['autor'].'%'],
-        ])
-        ->where(function ($query) use ($search) {
+        ])->where(function ($query) use ($search) {
             return $query->where('titulo', 'like','%'.$search['titulo'].'%')
                   ->orWhere('descripcion', 'like','%'.$search['titulo'].'%');
-        })
-        ->groupBy(['libro.id','libro.autor','libro.titulo','libro.categoria_id','libro.unidad'])
-        // ->where('prestamo.estado','P')
+        })->groupBy(['libro.id','libro.autor','libro.titulo','libro.categoria_id','libro.unidad'])
         ->where(function ($query) {
             return $query->where('prestamo.estado','P')
                     ->orWhere('prestamo.estado',null);
         })
-        // ->orWhere('prestamo.estado',null)
-        ->paginate(1);
+        ->paginate(8);
         return view('prestamo.new',compact('categorias','libros','search'));
     }
 
