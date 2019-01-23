@@ -30,7 +30,7 @@ class EstudianteController extends Controller
         }
         $estudiantes= estudiante::where('estudiante.nombre','like','%'.$search['nombre'].'%')
                         ->orWhere('estudiante.apellido','like','%'.$search['nombre'].'%')
-                        ->paginate(1);
+                        ->paginate(6);
 
         return view('estudiante.index', compact('estudiantes','search'));
     }
