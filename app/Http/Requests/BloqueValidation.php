@@ -26,6 +26,7 @@ class BloqueValidation extends FormRequest
         return [
             'nombre'=>'required',
             'filas'=>'required|numeric|min:1'
+            // 'nombre'=>Rule::unique('bloque')->ignore($bloque->id, 'id'),
         ];
     }
 }

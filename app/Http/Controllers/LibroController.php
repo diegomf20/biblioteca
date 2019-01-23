@@ -8,6 +8,7 @@ use App\Logica\Mensaje;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\model\bloque;
+use App\Http\Requests\LibroValidation;
 
 class LibroController extends Controller
 {
@@ -45,7 +46,7 @@ class LibroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LibroValidation $request)
     {
         DB::beginTransaction();
         try {

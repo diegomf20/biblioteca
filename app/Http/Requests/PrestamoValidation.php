@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EstudianteValidation extends FormRequest
+class PrestamoValidation extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class EstudianteValidation extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,17 +24,13 @@ class EstudianteValidation extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=>'required',
-            'apellido'=>'required',
-            'fecha_vence'=>'required',
-            'telefono'=>'required|numeric'
+            // categoria
+            // autor
+            // titulo
+            'libro_id'       => 'required',
+            'estudiante_id'  => 'required',
+            'fecha_prestamo' => 'required',
+            'fecha_entrega'  => 'required',
         ];
     }
-    public function messages()
-    {
-        return [
-        ];
-    }
-
-    
 }

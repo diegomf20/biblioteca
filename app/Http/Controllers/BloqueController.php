@@ -39,10 +39,14 @@ class BloqueController extends Controller
      */
     public function store(BloqueValidation $request)
     {
+        $this->validate($request, [
+            'unidad'    =>  'unique:bloque,nombre_bloque',
+        ]); 
+
         DB::beginTransaction();
         try{
             $bloque=new bloque();
-            $bloque->nombre_bloque=$request->get('nombre');
+            $bloque->nombre_bloque=strtoupper($request->get('nombre'));
             $bloque->filas=$request->get('filas');
             $bloque->save();
             DB::commit();
@@ -84,10 +88,16 @@ class BloqueController extends Controller
      */
     public function update(BloqueValidation $request, $bloque)
     {
+        $bloque=bloque::where('id',$bloque)->first();
+       
+        if($bloque->nombre_bloque!==strtoupper($request->get('nombre'))){
+            $this->validate($request, [
+                'nombre'    =>  'unique:bloque,nombre_bloque',
+            ]); 
+        }
         DB::beginTransaction();
         try{
-            $bloque=bloque::where('id',$bloque)->first();
-            $bloque->nombre_bloque=$request->get('nombre');
+            $bloque->nombre_bloque=strtoupper($request->get('nombre'));
             $bloque->filas=$request->get('filas');
             $bloque->save();
             DB::commit();
