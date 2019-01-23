@@ -2,7 +2,7 @@
 
 @section('content')
 <div class=titulo>
-    <span><i class="fas fa-boxes"></i> Nuevo Prestamo </span>
+    <span><i class="fas fa-book-reader"></i> Nuevo Prestamo </span>
 </div>
 <style>
     .tab-content{
@@ -42,7 +42,6 @@
                     <div class="col-2 form-group">
                         <button type=submit class="btn btn-info">Buscar</button>
                     </div>
-                
                 </form>
                 <table class="table">
                     <thead>
@@ -51,6 +50,9 @@
                             <th>Autor</th>
                             <th>Tipo</th>
                             <th>Disponible</th>
+                            <th>
+                                Seleccionar
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,7 +63,15 @@
                             <td>{{ $libro->categoria->nombre_categoria }}</td>
                             <td>{{ $libro->unidad - $libro->prestado }}</td>
                             <td id="libro-{{ $libro->id }}" hidden>{{ $libro }}</td>
-                            <td><a id="seleccionar-{{ $libro->id }}" class="btn btn-primary btn-sm btn-seleccionar">Seleccionar</a></td>
+                            <td>
+                                @if (($libro->unidad - $libro->prestado)>0)
+                                    <a id="seleccionar-{{ $libro->id }}" class="btn btn-primary btn-sm btn-seleccionar">
+                                        <i class="far fa-check-square"></i>
+                                    </a>
+                                @else
+                                    
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -102,7 +112,7 @@
                                 <input name=fecha_entrega type="date" class="form-control" name="" id="txt-fecha-entrega" value="<?php echo date("Y-m-d",strtotime("+1 day"));?>">
                             </div>
                             <div class="col-12 form-group">
-                                <button type="submit">GUARDAR</button>
+                                <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> GUARDAR</button>
                             </div>
                         </div>
                     </form>
