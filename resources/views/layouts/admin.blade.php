@@ -47,6 +47,11 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
           <li class="nav-item" data-toggle="tooltip" data-placement="right">
+            <a class="nav-link" href="{{route('resumen.index')}}">
+              <span class="nav-link-text"><i class="fas fa-book-reader"></i> Resumen</span>
+            </a>
+          </li>
+          <li class="nav-item" data-toggle="tooltip" data-placement="right">
             <a class="nav-link" href="{{route('prestamo.index')}}">
               <span class="nav-link-text"><i class="fas fa-book-reader"></i> Prestamo</span>
             </a>

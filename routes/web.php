@@ -13,9 +13,6 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
-Route::get('/', function () {
-    return view('welcome');
 })->name('home');
 
 Route::resource('bloque','BloqueController');
@@ -25,3 +22,5 @@ Route::resource('prestamo','PrestamoController')->only(['index', 'create','store
 Route::resource('usuario','UsuarioController');
 Route::resource('bloque','BloqueController');
 Route::get('buscar','EstudianteController@buscarestudiante')->name('estudiante.buscar');
+
+Route::get('resumen','ResumenController@index')->name('resumen.index');
