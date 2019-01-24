@@ -23,7 +23,10 @@ class ResumenController extends Controller
             ->orderBy('prestado','desc')
             ->limit(3)
             ->get();
-        $prestamoPendiente=Prestamo::get();
-        return view('resumen.index',compact('top','topLector'));
+        $prestamoPendiente=prestamo::where('fecha_entrega','>=','CURDATE()')
+            ->where('estado','P')
+            ->get();
+        // dd($prestamoPendiente);
+        return view('resumen.index',compact('top','topLector','prestamoPendiente'));
     }
 }
