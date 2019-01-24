@@ -17,7 +17,7 @@ class CreateLibrosTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('titulo','100');
-            $table->string('autor','100');
+            $table->string('autor','100')->nullable();
             $table->integer('fila');
             $table->string('codigo','15');
             $table->string('descripcion')->nullable();
