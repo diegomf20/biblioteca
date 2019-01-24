@@ -35,7 +35,7 @@ class LibroController extends Controller
             }
         }
         $categorias=categoria::all();
-        $libros=libro::where([
+        $libros=libro::with('bloque')->where([
                     ['categoria_id', 'like','%'.$search['categoria'].'%'],
                     ['autor', 'like','%'.$search['autor'].'%'],
                 ])
@@ -44,7 +44,6 @@ class LibroController extends Controller
                         ->orWhere('descripcion', 'like','%'.$search['titulo'].'%');
                 })
                 ->paginate(8);
-
         return view('libro.index',compact('libros','categorias','search'));
     }
 
