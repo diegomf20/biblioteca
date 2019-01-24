@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\libro;
-use App\Model\estudiante;
-use App\Model\prestamo;
+use App\model\libro;
+use App\model\estudiante;
+use App\model\prestamo;
 use Illuminate\Support\Facades\DB;
 
 class ResumenController extends Controller
