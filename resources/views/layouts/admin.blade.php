@@ -14,20 +14,10 @@
   <link href="{{asset('css/all-fontawesome.min.css')}}" rel="stylesheet">  
   {{-- Booststrap  --}}
   <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet"> 
-  {{-- datatable booststrap --}}
-  <link href="{{asset('css/dataTables.bootstrap4.css')}}" rel="stylesheet">
-  {{-- fonts --}}
-  <link href="https://fonts.googleapis.com/css?family=Warnes" rel="stylesheet">
-  {{-- imprimir pdf  --}}
-  <link href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" rel="stylesheet">
   
   {{-- css app --}}
   <link href="{{asset('css/sb-admin.css')}}" rel="stylesheet">
   
-  {{-- calendario --}}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css">
-  {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css"> --}}
-
   <link rel='shortcut icon' type='image/x-icon' href='{{asset('img/dolar.png')}}'/> 
   {{-- agregar esto para enviar el token en ajax --}}
   <meta name="csrf_token" content="{{csrf_token()}}"/>
@@ -126,36 +116,12 @@
   {{-- booststrap y jquery --}}
   <script src="{{asset('js/jquery.min.js')}}"></script>
   <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script> 
- 
-  
 
-  {{-- datateble--}}
-  <script src="{{asset('js/jquery.dataTables.js')}}"></script>
-  <script src="{{asset('js/dataTables.bootstrap4.js')}}"></script>
-  <script src="{{asset('js/sb-admin-datatables.js')}}"></script>
-
-  {{-- js para numeros --}}
-  <script src="{{asset('js/jquery.number.min.js')}}"></script> 
   {{-- scripts app --}}
   <script src="{{asset('js/sb-admin.js')}}"></script> 
   @yield('script') 
   {{-- autocomplete --}}   
   <script src="{{asset('js/jquery-ui-1.12.1/jquery-ui.min.js')}}"></script>
-
-  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script> --}}
-  {{-- calendario --}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/locale-all.js"></script>
-
-
-  {{-- imprimir pdf --}}
-  <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
 
   <script>
     //DATOS GENERALES

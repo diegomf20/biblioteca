@@ -55,26 +55,3 @@ $(document).ready(function(){
     // console.log(options);
     })
 })
-
-// alert-success operacion 
-
-window.setTimeout(function() {      
-    $(".alert.desvaneces").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove(); 
-    });
-  }, 4000);
-
-
-  $('#total').number( true, 2 );
-  $('.precio').number( true, 2 );
-  // $('.precio').number( true, 2 );
-  
-  /* window.setTimeout(function() {      
-    alert('hola');
-    $(".alert.desvaneces").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove(); 
-    });
-  }, 4000);  
- */
-
-
