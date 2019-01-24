@@ -18,7 +18,7 @@
   {{-- css app --}}
   <link href="{{asset('css/sb-admin.css')}}" rel="stylesheet">
   
-  <link rel='shortcut icon' type='image/x-icon' href='{{asset('img/dolar.png')}}'/> 
+  <link rel='shortcut icon' type='image/x-icon' href='{{asset('img/icono.png')}}'/> 
   {{-- agregar esto para enviar el token en ajax --}}
   <meta name="csrf_token" content="{{csrf_token()}}"/>
 
