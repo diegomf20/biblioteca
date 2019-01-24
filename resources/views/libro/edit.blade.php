@@ -95,7 +95,7 @@
                                 </div>
                                 <div class="form-group col-12">
                                     <label for="">Descripcion:</label>
-                                    <textarea rows="1" name=descripcion type="text" class="form-control  {{ $errors->has('descripcion') ? 'input-error' : '' }}" value="{{ $libro->descripcion }}"></textarea>
+                                    <textarea rows="1" name=descripcion type="text" class="form-control  {{ $errors->has('descripcion') ? 'input-error' : '' }}" value="">{{ $libro->descripcion }}</textarea>
                                     @if ($errors->has('descripcion'))
                                         <span class="error">
                                             <strong>{{ $errors->first('descripcion') }}</strong>
