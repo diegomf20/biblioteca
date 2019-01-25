@@ -10,8 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
+Route::get('/','LoginController@index')->name('login');
+Route::post('/postlogin','LoginController@postlogin')->name('postlogin');
+Route::get('/home', function () {
     return view('welcome');
 })->name('home');
 
