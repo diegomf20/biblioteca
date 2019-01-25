@@ -31,7 +31,7 @@
          <div class="col-sm-9 col-10 main-section">
              <div class="modal-content h">
                  <div class="col-12 user-img">
-                     <img src="{{asset('img/logo.png')}}" alt="">
+                     <img src="{{asset('img/logo.png')}}" style="background-color: #fff" alt="">
                  </div>
                  <div class="col-12 form-input">
                      <form  method="POST" action="{{ route('postlogin') }}" id="login">
