@@ -538,6 +538,7 @@ div#combo{
 /* ===================== */ 
 
 .login {
+
   /* margin: 0;
   background-image: url('../img/fondo3.jpeg');
   background-repeat: no-repeat;
@@ -572,7 +573,8 @@ div#combo{
 }
 
 .modal-dialog.h{
-  margin-left: 50px;
+  margin-left: auto;
+  margin-right: auto
 }
 .modal-content.h{
   background-color:#dee2e6e3;

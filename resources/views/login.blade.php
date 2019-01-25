@@ -28,40 +28,43 @@
    <!-- Navigation-->
    <div class="login">
      <div class="modal-dialog h text-center">
-         <div class="col-sm-9 col-10 main-section">
-             <div class="modal-content h">
-                 <div class="col-12 user-img">
-                     <img src="{{asset('img/logo.png')}}" style="background-color: #fff" alt="">
-                 </div>
-                 <div class="col-12 form-input">
-                     <form  method="POST" action="{{ route('postlogin') }}" id="login">
-                         {{ csrf_field() }}
-                          <div class="form-group">
-                             <input id="email" type="text" class="form-control {{ $errors->has('email') ? ' input-error' : '' }}" name="email" value="{{ old('email') }}" required  placeholder="Ingrese email"> {{-- autofocus --}}
-                              @if ($errors->has('email'))
-                                 <span class='error'>
-                                     <strong>{{ $errors->first('email') }}</strong>
-                                 </span>
-                             @endif
-                         </div>
-                         <div class="form-group{{ $errors->has('password') ? ' input-error' : '' }}">
-                             <input id="password" type="password" class="form-control" name="password" required placeholder="Ingrese contraseña">
- 
-                             @if ($errors->has('password'))
-                                 <span class="error">
-                                     <strong>{{ $errors->first('password') }}</strong>
-                                 </span>
-                             @endif
-                         </div>
- 
-                         <button type="submit" class="btn btn-lg btn-success"> LOGIN</button>                        
-                     </form>
+        <div class="row">
+            <div class="col-sm-9 col-10 main-section">
+                 <div class="modal-content h">
+                     <div class="col-12 user-img">
+                         <img src="{{asset('img/logo.png')}}" style="background-color: #fff" alt="">
+                     </div>
+                     <div class="col-12 form-input">
+                         <form  method="POST" action="{{ route('postlogin') }}" id="login">
+                             {{ csrf_field() }}
+                              <div class="form-group">
+                                 <input id="email" type="text" class="form-control {{ $errors->has('email') ? ' input-error' : '' }}" name="email" value="{{ old('email') }}" required  placeholder="Ingrese email"> {{-- autofocus --}}
+                                  @if ($errors->has('email'))
+                                     <span class='error'>
+                                         <strong>{{ $errors->first('email') }}</strong>
+                                     </span>
+                                 @endif
+                             </div>
+                             <div class="form-group{{ $errors->has('password') ? ' input-error' : '' }}">
+                                 <input id="password" type="password" class="form-control" name="password" required placeholder="Ingrese contraseña">
+     
+                                 @if ($errors->has('password'))
+                                     <span class="error">
+                                         <strong>{{ $errors->first('password') }}</strong>
+                                     </span>
+                                 @endif
+                             </div>
+     
+                             <button type="submit" class="btn btn-lg btn-success"> LOGIN</button>                        
+                         </form>
+                     </div>
                  </div>
              </div>
-         </div>
- 
-     </div>
- </div>
+     
+            </div>
+
+        </div>
+    </div>
    {{-- booststrap y jquery --}}
    <script src="{{asset('js/jquery.min.js')}}"></script>
    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
