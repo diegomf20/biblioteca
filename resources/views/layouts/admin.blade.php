@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Biblioteca</title>}
+  <title>Biblioteca</title>
   {{-- autocomplete --}}
   <link href="{{asset('js/jquery-ui-1.12.1/jquery-ui.min.css')}}" rel="stylesheet">
   {{-- icon fontawesome--}}
