@@ -23,15 +23,15 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('rol_id');
         });
         DB::table('user')->insert([
-            'name'=>'Jose',
-            'email'=>'jose',
-            'password'=> bcrypt('123456'),
+            'name'=>'Javier Villalobos',
+            'email'=>'acropolis',
+            'password'=> bcrypt('acropolis123'),
             'rol_id'=>1,
         ]);
 
         DB::table('user')->insert([
-            'name'=>'Juan',
-            'email'=>'juan',
+            'name'=>'Biblioteca',
+            'email'=>'biblioteca',
             'password'=> bcrypt('123456'),
             'rol_id'=>2,
         ]);
