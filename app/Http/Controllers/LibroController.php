@@ -17,6 +17,13 @@ class LibroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('roles:Administrador');
+    }
+    
     public function index(Request $request)
     {
         if($request->has('categoria')||$request->has('titulo')||$request->has('autor')){

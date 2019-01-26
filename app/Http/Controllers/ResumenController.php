@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class ResumenController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('roles:Administrador');
+    }
+    
     public function index(){
         $top=libro::select('libro.titulo','libro.autor',DB::raw('COUNT(prestamo.id) as prestado'))
             ->join('prestamo','prestamo.libro_id','=','libro.id')

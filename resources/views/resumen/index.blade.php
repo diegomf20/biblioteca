@@ -42,7 +42,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Estudiante</th>
+                                    <th>Lector</th>
                                     <th>Leidos</th>
                                 </tr>
                             </thead>
@@ -67,7 +67,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Estudiante</th>
+                                    <th>Lector</th>
                                     <th>Telefono</th>
                                     <th>Fecha de Entrega</th>
                                     <th>Nombre del Libro</th>

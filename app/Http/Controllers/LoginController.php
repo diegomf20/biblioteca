@@ -31,8 +31,9 @@ class LoginController extends Controller
     }
 
     public function cerrar_session(Request $request){
-        session()->forget('user');
-        return redirect('/home');   
+        // session()->forget('user');
+        Auth::logout();
+        return redirect('/');
     }
 
     public function redirectPath()
@@ -40,8 +41,10 @@ class LoginController extends Controller
         if(Auth::check()){
             return '/home';
         }
-
         return '/';
+    }
+
+    public function comprobar (){
         
     }
 

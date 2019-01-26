@@ -20,11 +20,20 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->unsignedInteger('rol_id');
         });
         DB::table('user')->insert([
             'name'=>'Jose',
-            'email'=>'dmf@gmail.com',
-            'password'=> bcrypt('123456')
+            'email'=>'jose',
+            'password'=> bcrypt('123456'),
+            'rol_id'=>1,
+        ]);
+
+        DB::table('user')->insert([
+            'name'=>'Juan',
+            'email'=>'juan',
+            'password'=> bcrypt('123456'),
+            'rol_id'=>2,
         ]);
     }
 

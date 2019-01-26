@@ -15,6 +15,14 @@ class PrestamoController extends Controller
     /**
      * Muestra el Historial de Prestamos
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('roles:Operador',['only' => ['index','create', 'store', 'edit', 'update']] );
+        $this->middleware('roles:Administrador',['only' => ['destroy']]);
+    }
+
     public function index(Request $request)
     {
         if($request->has('nombre')){

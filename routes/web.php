@@ -12,6 +12,7 @@
 */
 Route::get('/','LoginController@index')->name('login');
 Route::post('/postlogin','LoginController@postlogin')->name('postlogin');
+Route::post('cerrar/', 'LoginController@cerrar_session')->name('cerrar');
 Route::get('/home', function () {
     return view('welcome');
 })->name('home');

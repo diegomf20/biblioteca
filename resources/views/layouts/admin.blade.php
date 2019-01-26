@@ -67,10 +67,20 @@
         <li class="nav-item">
             <a class="nav-link mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-user fa-fw"></i>
-                {{ "Diego Mendoza"}} 
+                {{ Auth::user()->name}} 
             </a>
         </li>
-        
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('cerrar') }}"
+                onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </a>
+            <form id="logout-form" action="{{ route('cerrar') }}" method="POST" style="display: none;">
+                {{-- <input type="text" name="ruta" id="ruta" value="pinos"> --}}
+                {{ csrf_field() }}
+            </form>
+        </li>
       </ul>
     </div>
   </nav>
