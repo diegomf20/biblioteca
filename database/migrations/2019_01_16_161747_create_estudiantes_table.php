@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreateEstudiantesTable extends Migration
 {
@@ -21,6 +22,8 @@ class CreateEstudiantesTable extends Migration
             $table->string('telefono','9');
             $table->date('fecha_vence');
         });
+        // Full Text Index
+        // DB::statement('ALTER TABLE estudiante ADD FULLTEXT fulltext_index (nombre, apellido)');
 
     }
 

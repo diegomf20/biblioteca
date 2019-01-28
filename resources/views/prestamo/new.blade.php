@@ -160,8 +160,6 @@
         });
 
         $("#txt-estudiante").keyup(function(){
-            console.log($('#txt-estudiante').val());
-            // console.log('q');
             $( "#txt-estudiante" ).autocomplete({
                 source: "{!!URL::route('estudiante.buscar')!!}",
                 minLength: 3,

@@ -161,14 +161,19 @@ class EstudianteController extends Controller
 
     public function buscarestudiante(Request $request){
         $term = $request->term;
+        $nombres=explode(" ", $term);
         $results = array();
-        
-        $queries = estudiante::select('nombre','apellido', 'id')
-                        ->where('nombre', 'LIKE', "%{$term}%")
-                        ->orWhere('apellido', 'LIKE', "%{$term}%")
-                        ->take(5)
-                        ->get();
-        
+
+        /* $queries = estudiante::select('nombre','apellido', 'id')
+                        ->where([
+                            ['nombre', 'like','%'.$nombres[0].'%'],
+                            ['apellido', 'like','%'.$nombres[1].'%'],
+                        ])
+                        ->get(); */
+        $queries = estudiante::selectRaw("nombre,apellido, id")
+        ->whereRaw("MATCH(nombre,apellido)AGAINST('".$term."' IN BOOLEAN MODE)")
+        ->get();
+        // dd($queries);
         foreach ($queries as $query)
         {
             $results[] = [ 'id' => $query->id, 'value' =>$query->nombre.' '.$query->apellido ];
@@ -176,3 +181,4 @@ class EstudianteController extends Controller
         return response()->json($results);
     }
 }
+
