@@ -4,6 +4,11 @@
 <div class=titulo>
     <span><i class="fas fa-book-reader"></i> Nuevo Prestamo </span>
 </div>
+{{-- @if (count($errors))
+@foreach ($errors->all() as $item)
+    <span class="error">{{$item}}</span><br>
+@endforeach
+@endif --}}
 <style>
     .tab-content{
         border-right: 1px solid #dee2e6;
@@ -92,7 +97,12 @@
                             <div class="col-sm-6 form-group">
                                 <label for="">Titulo:</label>
                                 <input id=txt-id-libro name=libro_id type="text" hidden>
-                                <input id=txt-libro  class="form-control" type="text" readonly> 
+                                <input id=txt-libro  class="form-control {{ $errors->has('libro_id') ? 'input-error' : '' }}" type="text" readonly>
+                                @if ($errors->has('libro_id'))
+                                    <span class="error">
+                                        <strong>{{ $errors->first('libro_id') }}</strong>
+                                    </span>
+                                @endif 
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label for="">Autor:</label>
@@ -101,15 +111,30 @@
                             <div class="col-sm-6 form-group">
                                 <label for="">Estudiante:</label>
                                 <input id=txt-id-estudiante name="estudiante_id" type="text"  value="">
-                                <input id=txt-estudiante  class="form-control" type="text" required> 
+                                <input id=txt-estudiante  class="form-control {{ $errors->has('estudiante_id') ? 'input-error' : '' }}" type="text" required> 
+                                @if ($errors->has('estudiante_id'))
+                                    <span class="error">
+                                        <strong>{{ $errors->first('estudiante_id') }}</strong>
+                                    </span>
+                                @endif 
                             </div>
                             <div class="col-sm-3 form-group">
                                 <label for="">Fecha Prestamo:</label>
-                                <input name=fecha_prestamo type="date" class="form-control" name="" id="txt-fecha-prestamo" value="<?php echo date("Y-m-d");?>">
+                                <input name=fecha_prestamo type="date" class="form-control {{ $errors->has('fecha_prestamo') ? 'input-error' : '' }}" name="" id="txt-fecha-prestamo" value="<?php echo date("Y-m-d");?>">
+                                @if ($errors->has('fecha_prestamo'))
+                                    <span class="error">
+                                        <strong>{{ $errors->first('fecha_prestamo') }}</strong>
+                                    </span>
+                                @endif 
                             </div>
                             <div class="col-sm-3 form-group">
                                 <label for="">Fecha Entrega:</label>
-                                <input name=fecha_entrega type="date" class="form-control" name="" id="txt-fecha-entrega" value="<?php echo date("Y-m-d",strtotime("+1 day"));?>">
+                                <input name=fecha_entrega type="date" class="form-control {{ $errors->has('fecha_entrega') ? 'input-error' : '' }}" name="" id="txt-fecha-entrega" value="<?php echo date("Y-m-d",strtotime("+1 day"));?>">
+                                @if ($errors->has('fecha_entrega'))
+                                    <span class="error">
+                                        <strong>{{ $errors->first('fecha_entrega') }}</strong>
+                                    </span>
+                                @endif 
                             </div>
                             <div class="col-12 form-group">
                                 <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> GUARDAR</button>

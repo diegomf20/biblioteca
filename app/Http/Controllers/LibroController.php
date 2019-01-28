@@ -21,7 +21,7 @@ class LibroController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('roles:Operador',['except' => ['create', 'store', 'edit', 'update','destroy']] );
+        // $this->middleware('roles:Operador',['except' => ['create', 'store', 'edit', 'update','destroy']] );
         $this->middleware('roles:Administrador',['only' => ['create', 'store', 'edit', 'update','destroy']] );
     }
     

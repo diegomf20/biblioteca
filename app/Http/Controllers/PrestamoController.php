@@ -53,9 +53,8 @@ class PrestamoController extends Controller
     /**
      * Muestra la vista de crear un nuevo Prestamo y Muestra los Libros por Filtros
      */
-    public function create(PrestamoValidation $request)
+    public function create(Request $request)
     {
-
         if($request->has('categoria')||$request->has('titulo')||$request->has('autor')){
             $search=[
                 "categoria" =>$request->get('categoria'),
@@ -93,9 +92,10 @@ class PrestamoController extends Controller
     /**
      * Crea un nuevo Prestamo de Biblioteca
      */
-    public function store(Request $request)
+    public function store(PrestamoValidation $request)
     {
         DB::beginTransaction();
+        dd($request);
         try {
 
             $prestamo= new prestamo();
@@ -120,7 +120,7 @@ class PrestamoController extends Controller
     /**
      * Actualiza el estado del Prestamo y su fecha de entrega
      */
-    public function update(Request $request, $id)
+    public function update(PrestamoValidation $request, $id)
     {
         DB::beginTransaction();
         try {

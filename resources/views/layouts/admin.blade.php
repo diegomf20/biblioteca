@@ -36,7 +36,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-            {{Auth::user()->rol_id}}
           @if (Auth::user()->rol_id==1)
             <li class="nav-item" data-toggle="tooltip" data-placement="right">
               <a class="nav-link" href="{{route('resumen.index')}}">

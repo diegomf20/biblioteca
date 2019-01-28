@@ -23,6 +23,7 @@ class PrestamoValidation extends FormRequest
      */
     public function rules()
     {
+       
         return [
             // categoria
             // autor
@@ -31,6 +32,14 @@ class PrestamoValidation extends FormRequest
             'estudiante_id'  => 'required',
             'fecha_prestamo' => 'required',
             'fecha_entrega'  => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return[
+            'libro_id.required'       => 'Seleccione un libro',
+            'estudiante_id.required'  => 'Seleccione un estudiante',
         ];
     }
 }
