@@ -9,6 +9,7 @@ use App\Logica\Mensaje;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Http\Requests\PrestamoValidation;
 
 class PrestamoController extends Controller
 {
@@ -52,7 +53,7 @@ class PrestamoController extends Controller
     /**
      * Muestra la vista de crear un nuevo Prestamo y Muestra los Libros por Filtros
      */
-    public function create(Request $request)
+    public function create(PrestamoValidation $request)
     {
 
         if($request->has('categoria')||$request->has('titulo')||$request->has('autor')){

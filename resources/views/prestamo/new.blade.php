@@ -100,7 +100,7 @@
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label for="">Estudiante:</label>
-                                <input id=txt-id-estudiante name="estudiante_id" type="text" hidden value="">
+                                <input id=txt-id-estudiante name="estudiante_id" type="text"  value="">
                                 <input id=txt-estudiante  class="form-control" type="text" required> 
                             </div>
                             <div class="col-sm-3 form-group">
