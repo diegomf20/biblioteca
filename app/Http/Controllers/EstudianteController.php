@@ -18,7 +18,8 @@ class EstudianteController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('roles:Administrador');
+        // $this->middleware('roles:Administrador');
+        $this->middleware('roles:Administrador',['except' => ['buscarestudiante']] );
     }
     
     public function index(Request $request)
@@ -163,7 +164,6 @@ class EstudianteController extends Controller
         $term = $request->term;
         $nombres=explode(" ", $term);
         $results = array();
-
         /* $queries = estudiante::select('nombre','apellido', 'id')
                         ->where([
                             ['nombre', 'like','%'.$nombres[0].'%'],
@@ -171,9 +171,8 @@ class EstudianteController extends Controller
                         ])
                         ->get(); */
         $queries = estudiante::selectRaw("nombre,apellido, id")
-        ->whereRaw("MATCH(nombre,apellido)AGAINST('".$term."' IN BOOLEAN MODE)")
+        ->whereRaw("MATCH(nombre,apellido)AGAINST('*".$term."''*' IN BOOLEAN MODE)")
         ->get();
-        // dd($queries);
         foreach ($queries as $query)
         {
             $results[] = [ 'id' => $query->id, 'value' =>$query->nombre.' '.$query->apellido ];

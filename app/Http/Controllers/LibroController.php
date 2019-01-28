@@ -22,7 +22,7 @@ class LibroController extends Controller
     {
         $this->middleware('auth');
         // $this->middleware('roles:Operador',['except' => ['create', 'store', 'edit', 'update','destroy']] );
-        $this->middleware('roles:Administrador',['only' => ['create', 'store', 'edit', 'update','destroy']] );
+        $this->middleware('roles:Administrador',['only' => ['create', 'store', 'edit', 'update','destroy','show']] );
     }
     
     public function index(Request $request)
