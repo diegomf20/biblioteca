@@ -110,7 +110,7 @@
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label for="">Estudiante:</label>
-                                <input id=txt-id-estudiante name="estudiante_id" type="text"  value="">
+                                <input id=txt-id-estudiante name="estudiante_id" type="text" hidden value="">
                                 <input id=txt-estudiante  class="form-control {{ $errors->has('estudiante_id') ? 'input-error' : '' }}" type="text" required> 
                                 @if ($errors->has('estudiante_id'))
                                     <span class="error">
