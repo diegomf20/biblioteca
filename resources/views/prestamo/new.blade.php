@@ -160,18 +160,24 @@
         });
 
         $("#txt-estudiante").keyup(function(){
-            $( "#txt-estudiante" ).autocomplete({
-                source: "{!!URL::route('estudiante.buscar')!!}",
-                minLength: 3,
-                select: function(event, ui) {
-                    $('#txt-estudiante').val(ui.item.value);
-                    $('#txt-id-estudiante').val(ui.item.id);
-                    console.log($('#txt-estudiante').val());
-                },
-                search: function( event, ui ) {
-                    $('#txt-id-estudiante').val('');
-                }                
-            });  
+            var estudiante=$('#txt-estudiante').val();
+            var length=0;
+            if(estudiante.length!=length){
+                console.log(estudiante.length);
+                $( "#txt-estudiante" ).autocomplete({
+                    source: "{!!URL::route('estudiante.buscar')!!}",
+                    minLength: 3,
+                    select: function(event, ui) {
+                        $('#txt-estudiante').val(ui.item.value);
+                        $('#txt-id-estudiante').val(ui.item.id);
+                        var length=estudiante.length;
+                        // console.log($('#txt-estudiante').val());
+                    },
+                    search: function( event, ui ) {
+                        $('#txt-id-estudiante').val('');
+                    }                
+                });  
+            }
         });
 
 
