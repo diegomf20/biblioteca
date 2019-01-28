@@ -95,7 +95,6 @@ class PrestamoController extends Controller
     public function store(PrestamoValidation $request)
     {
         DB::beginTransaction();
-        dd($request);
         try {
 
             $prestamo= new prestamo();
