@@ -24,7 +24,6 @@ class CreateEstudiantesTable extends Migration
         });
         // Full Text Index
         // DB::statement('ALTER TABLE estudiante ADD FULLTEXT fulltext_index (nombre, apellido)');
-
     }
 
     /**
