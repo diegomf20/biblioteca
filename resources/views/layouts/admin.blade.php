@@ -28,7 +28,7 @@
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg fixed-top" id="mainNav">
     <a class="navbar-brand" href="{{route('home')}}">
-        <img src="{{asset('logo.png')}}"  class=" nav-logo d-inline-block align-top" alt="">
+        <img src="{{asset('img/logo.png')}}"  class=" nav-logo d-inline-block align-top" alt="">
         BIBLIOTECA
     </a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
