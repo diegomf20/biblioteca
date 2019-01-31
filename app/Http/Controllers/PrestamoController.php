@@ -120,7 +120,7 @@ class PrestamoController extends Controller
     /**
      * Actualiza el estado del Prestamo y su fecha de entrega
      */
-    public function update(PrestamoValidation $request, $id)
+    public function update(Request $request, $id)
     {
         DB::beginTransaction();
         try {
