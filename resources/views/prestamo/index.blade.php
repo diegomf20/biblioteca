@@ -42,10 +42,11 @@
                         <tbody>
                             @foreach ($prestamos as $prestamo)
                                 <tr>
+                                {{-- <td>{{$prestamo}}</td> --}}
                                     <td>{{ $prestamo->fecha_prestamo }}</td>
                                     <td>{{ $prestamo->fecha_entrega }}</td>
-                                    <td>{{ $prestamo->libro->titulo }}</td>
-                                    <td>{{ $prestamo->estudiante->nombre }} {{ $prestamo->estudiante->apellido }}</td>
+                                    <td>{{ $prestamo->titulo }}</td>
+                                    <td>{{ $prestamo->nombre }} {{ $prestamo->apellido }}</td>
                                     <td>
                                         @if ($prestamo->estado=="P")
                                             <form action="{{route('prestamo.update',$prestamo->id)}}" method="post">

@@ -38,12 +38,14 @@ class PrestamoController extends Controller
             }
         }
         try {
-            $prestamos=prestamo::with('libro')
+            $prestamos=prestamo::join('libro','libro.id',"=",'prestamo.libro_id')
                 ->join('estudiante','estudiante.id',"=",'prestamo.estudiante_id')
                 ->where('estudiante.nombre','like','%'.$search['nombre'].'%')
                 ->orWhere('estudiante.apellido','like','%'.$search['nombre'].'%')
                 ->orderBy('prestamo.estado','asc')
+                ->select("prestamo.id","fecha_prestamo","fecha_entrega","nombre","apellido","prestamo.estado","titulo")
                 ->paginate(8);
+                // dd($prestamos);
             return view('prestamo.index',compact('prestamos','search'));    //code...
         } catch (\Exception $e) {
             return redirect()->route('prestamo.index');
@@ -122,6 +124,8 @@ class PrestamoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        echo $id;
+        
         DB::beginTransaction();
         try {
 
@@ -130,6 +134,7 @@ class PrestamoController extends Controller
             $prestamo->estado='E';
             $prestamo->save();
             DB::commit(); 
+            // dd(prestamo::where('id',$id)->first());
             return redirect()->route('prestamo.index')
                     ->with('mensaje', Mensaje::success('El estudiante devolvio el libro'));
         }catch(\Exception $e){
