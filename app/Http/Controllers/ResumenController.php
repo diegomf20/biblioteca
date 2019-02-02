@@ -32,7 +32,7 @@ class ResumenController extends Controller
         $prestamoPendiente=prestamo::where('estado','P')->where('fecha_entrega','<=',DB::raw('curdate()'))
             // ->select(DB::raw('curdate()'))
             ->get();
-        // dd($prestamoPendiente);
+        // dd($prestamoPendiente); 
         return view('resumen.index',compact('top','topLector','prestamoPendiente'));
     }
 }

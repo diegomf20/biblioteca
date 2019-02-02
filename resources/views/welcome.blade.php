@@ -6,7 +6,7 @@
     }
     .home-flujo{
         margin: 0;
-        background-image: url('/img/homee.png');
+        background-image: url('img/home.png');
         background-size: 100% 100%;
         /* background-position: center; */
         background-repeat: no-repeat;
