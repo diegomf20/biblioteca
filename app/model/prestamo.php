@@ -11,6 +11,7 @@ class prestamo extends Model
     public function libro(){
         return $this->belongsTo('App\model\libro');
     }
+    
     public function estudiante(){
         return $this->belongsTo('App\model\estudiante');
     }
