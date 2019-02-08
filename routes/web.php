@@ -26,3 +26,5 @@ Route::resource('bloque','BloqueController');
 Route::get('buscar','EstudianteController@buscarestudiante')->name('estudiante.buscar');
 
 Route::get('resumen','ResumenController@index')->name('resumen.index');
+
+Route::get('alerta','AlertaController@alerta')->name('alerta');

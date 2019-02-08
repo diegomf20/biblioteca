@@ -38,13 +38,17 @@ class PrestamoController extends Controller
             }
         }
         try {
+
             $prestamos=prestamo::join('libro','libro.id',"=",'prestamo.libro_id')
-                ->join('estudiante','estudiante.id',"=",'prestamo.estudiante_id')
-                ->where('estudiante.nombre','like','%'.$search['nombre'].'%')
-                ->orWhere('estudiante.apellido','like','%'.$search['nombre'].'%')
-                ->orderBy('prestamo.estado','asc')
-                ->select("prestamo.id","fecha_prestamo","fecha_entrega","nombre","apellido","prestamo.estado","titulo")
-                ->paginate(8);
+                ->join('estudiante','estudiante.id',"=",'prestamo.estudiante_id');
+            $nombre=explode(" ",$search['nombre']);
+            $prestamos= $prestamos->where(DB::raw('concat(estudiante.nombre,estudiante.apellido)'),'like','%'.$nombre[0].'%');
+            for ($i=0; $i < count($nombre)-1; $i++) { 
+                $prestamos=$prestamos->orWhere(DB::raw('concat(estudiante.nombre,estudiante.apellido)'),'like','%'.$nombre[$i+1].'%');
+            }
+            $prestamos=$prestamos->orderBy('prestamo.estado','asc')
+            ->select("prestamo.id","fecha_prestamo","fecha_entrega","nombre","apellido","prestamo.estado","titulo")
+            ->paginate(8);
                 // dd($prestamos);
             return view('prestamo.index',compact('prestamos','search'));    //code...
         } catch (\Exception $e) {

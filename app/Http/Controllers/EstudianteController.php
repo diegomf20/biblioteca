@@ -35,10 +35,12 @@ class EstudianteController extends Controller
                 $search=["nombre" =>""];
             }
         }
-        $estudiantes= estudiante::where('estudiante.nombre','like','%'.$search['nombre'].'%')
-                        ->orWhere('estudiante.apellido','like','%'.$search['nombre'].'%')
-                        ->paginate(6);
-
+        $nombre=explode(" ",$search['nombre']);
+        $estudiantes= estudiante::where(DB::raw('concat(estudiante.nombre,estudiante.apellido)'),'like','%'.$nombre[0].'%');
+        for ($i=0; $i < count($nombre)-1; $i++) { 
+            $estudiantes=$estudiantes->orWhere(DB::raw('concat(estudiante.nombre,estudiante.apellido)'),'like','%'.$nombre[$i+1].'%');
+        }
+        $estudiantes=$estudiantes->paginate(6);
         return view('estudiante.index', compact('estudiantes','search'));
     }
 

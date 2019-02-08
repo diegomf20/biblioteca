@@ -9,7 +9,7 @@
             <div class="col-sm-6 mb-3">
                 <div class="card">
                     <div class="card-header">
-                        El Libro Más Leido
+                        El Libro Más Leido del Mes de {{$mes_actual}}
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered">
@@ -36,7 +36,7 @@
             <div class="col-sm-6 mb-3">
                 <div class="card">
                     <div class="card-header">
-                        Top de Lectores
+                        Top de Lector del Mes de {{$mes_actual}} 
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered">

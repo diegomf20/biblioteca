@@ -35,7 +35,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+        <ul class="navbar-nav navbar-sidenav  pt-2" id="exampleAccordion">
           @if (Auth::user()->rol_id==1)
             <li class="nav-item" data-toggle="tooltip" data-placement="right">
               <a class="nav-link" href="{{route('resumen.index')}}">
@@ -70,6 +70,13 @@
         </ul>
               {{-- parte superior --}}
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="btn btn-warning dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="far fa-envelope"></i> (<span id="txt-message">0</span>)
+          </a>
+          <div id="txt-area-message" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          </div>
+        </li>
         <li class="nav-item">
             <a class="nav-link mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-user fa-fw"></i>
@@ -159,7 +166,15 @@
         });
     });
   </script>
-   @yield('scripts') 
-  
+  @yield('scripts') 
+  <script>
+    $.get("{{route('alerta')}}",function( data ) {
+      $('#txt-message').text(data.length);
+      for (let index = 0; index < data.length; index++) {
+        const element = data[index];
+        $('#txt-area-message').append('<a class="dropdown-item" href="'+element.link+'">'+element.mensaje+'</a>')
+      }
+    });
+  </script>
 </body>
 </html>
